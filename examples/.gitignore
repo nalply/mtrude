@@ -1,0 +1,9 @@
+bin
+bin-debug
+libs
+.actionScriptProperties
+.flexProperties
+.fxpProperties
+.project
+.settings
+

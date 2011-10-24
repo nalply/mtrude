@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application
+  xmlns:fx="http://ns.adobe.com/mxml/2009" 
+  xmlns:s="library://ns.adobe.com/flex/spark"
+  xmlns:mx="library://ns.adobe.com/flex/mx"
+  xmlns:local="*"
+  width="500" height="503"
+  applicationComplete="init()"
+  backgroundColor="#2D313B" xmlns:mtrude="mtrude.*">
+  <fx:Script><![CDATA[
+    import flash.events.NetStatusEvent;
+    import flash.events.StatusEvent;
+    import flash.media.Camera;
+    import flash.net.NetConnection;
+    import flash.net.NetStream;
+    import flash.net.ObjectEncoding;
+    import flash.utils.clearInterval;
+    
+		private var nc:NetConnection = null;
+		private var ns:NetStream = null;
+		private var cam:Camera;
+    private var ncConnected:Boolean = false;
+    private var isRecording:Boolean = false;
+    
+    private function dbg(s:String):void {
+      dbgText.text += s + "\n";
+      trace(s);
+    }
+    
+    private function init():void {
+      recLabel.visible = false;
+      dbg("mtrudeClient 2011-10-24 15:54 CET");
+      dbg("Security.sandboxType: " + Security.sandboxType);
+      Security.allowDomain("r.seeflow.co.nz");
+    }
+    
+    private function clearLog():void {
+      dbgText.text = "";
+    }
+    
+    private function infos():void {
+      if (nc == null) {
+        dbg("NetConnection is null");
+      }
+      else if (!nc.connected) {
+        dbg("NetConnection has no connection");
+      }
+      else {
+        dbg("NetConnection"
+          + "\n  connectedProxyType: " + nc.connectedProxyType
+          + "\n  farID: " + nc.farID
+          + "\n  farNonce: " + nc.farNonce
+          + "\n  nearID: " + nc.nearID
+          + "\n  nearNonce: " + nc.nearNonce 
+          + "\n  protocol: " + nc.protocol
+          + "\n  uri: " + nc.uri
+          + "\n  usingTLS: " + nc.usingTLS
+        );
+      }
+      
+    }
+    
+    private function nsCheck():Boolean {
+      if (ns == null) {
+        dbg("NOTE! new NetStream() first!");
+        return false;
+      }
+      return true;
+    }
+		
+		private function ncConnect():void {
+			nc = new NetConnection();
+			nc.addEventListener(NetStatusEvent.NET_STATUS, netStatusHandler);
+			nc.proxyType = "best";
+			nc.client = this;
+			nc.connect(urlText.text);
+      dbg("nc.connect('" + urlText.text + "') with proxyType='best'");
+		}
+    
+    private function ncClose():void {
+      if (!ncConnected) {
+        dbg("NOTE! nc.connect() first!");
+      }
+      else {
+        if (ns) {
+          ns.close();
+          // crs does not do NetStream.Connect.Close
+          nsConnectedLabel.text = "no";
+          nsConnectedLabel.setStyle("color", 0xff0000);
+          recLabel.visible = false;
+          isRecording = false;
+        }
+        nc.close();
+        dbg("nc.close()");
+      }
+    }
+    
+    private function nsNew():void {
+      if (ns != null) {
+        dbg("NOTE! ns.close() first!");
+      }
+      else if (ncConnected) {
+      	ns = new NetStream(nc);
+        ns.addEventListener(NetStatusEvent.NET_STATUS, netStatusHandler);
+				ns.client = this;
+        ns.bufferTime = 10;
+        nsConnectedLabel.text = "new";
+        nsConnectedLabel.setStyle("color", 0xffff00);
+        dbg("ns = new NetStream(nc)");
+      }
+      else {
+        dbg("NOTE! nc.connect() first!");
+      }
+    }
+    
+		private function nsClose():void {
+      if (nsCheck()) {
+  			ns.close();
+        // crs does not always do NetStream.Connect.Close
+        nsConnectedLabel.text = "no";
+        nsConnectedLabel.setStyle("color", 0xff0000);
+        recLabel.visible = false;
+        isRecording = false;
+        dbg("ns.close()");
+        setTimeout(function():void { ns = null; }, 500);
+      }
+		}
+    
+    private function nsPlay():void {
+      if (nsCheck()) {
+      	ns.play(idText.text, 0, -1, false);
+        dbg("ns.play('" + idText.text + "', 0, -1, false)");
+      }
+    }
+
+		private function nsPublish():void {
+      if (nsCheck()) {
+  			ns.publish(idText.text, "record");
+        dbg("ns.publish('" + idText.text + "', 'record')");
+      }
+		}
+    
+    private function attachPlay():void {
+      if (nsCheck()) {
+        detach();
+        video.attachNetStream(ns);
+        attachPlayButton.setStyle("color", 0x008800);
+        dbg("attachPlay()");
+      }
+    }
+    
+    private function attachRecord():void {
+      if (nsCheck()) {
+        detach();
+        if (cam == null) cam = Camera.getCamera();
+        video.attachCamera(cam);
+        ns.attachCamera(cam);
+        attachRecordButton.setStyle("color", 0x008800);
+        dbg("attachRecord()");
+      }
+    }
+    
+    private function detach(): void {
+      if (ns) ns.attachCamera(null);
+      video.attachNetStream(null);
+      video.attachCamera(null);
+      cam = null;
+      attachPlayButton.setStyle("color", 0);
+      attachRecordButton.setStyle("color", 0);
+      dbg("detach()");
+    }
+    
+    private function nsPause():void {
+      if (nsCheck()) {
+      	ns.pause();
+        dbg("nsPause()");
+      }
+    }
+    
+    private function nsResume():void {
+      if (nsCheck()) {
+        ns.resume();
+        setTimeout(function():void { ns.resume(); }, 250);
+        dbg("ns.resume()");
+      }
+    }
+    
+    private function nsSeek():void {
+      if (nsCheck()) {
+        ns.seek(Number(seekText.text));
+        dbg("ns.seek(" + Number(seekText.text) + ")");
+      }
+    }
+    
+    private function stop():void {
+      if (nsCheck()) {
+        var handler:Function = function(e:Event):void {
+          if (ns.bufferLength == 0) {
+	          removeEventListener(Event.ENTER_FRAME, handler);
+            nsClose();
+            dbg("stop(): ENTER_FRAME and buffer drained");
+            dbg("ns.close()");
+          }
+        };
+        if (isRecording) {
+          addEventListener(Event.ENTER_FRAME, handler);
+        }
+        else {
+          nsClose();
+        }
+      }
+    }
+    
+		private function netStatusHandler(event:NetStatusEvent):void {
+      var intervalId:uint;
+    
+			dbg(event.info.code);
+      switch (event.info.code) {
+        case "NetConnection.Connect.Success":
+          ncConnected = true;
+          ncConnectedLabel.text = "yes";
+          ncConnectedLabel.setStyle("color", 0x00ff00);
+          break;
+          
+        case "NetConnection.Connect.Closed":
+        case "NetConnection.Connect.Failed":
+        case "NetConnection.Connect.Rejected":
+          if (nc != null) {
+            nc.removeEventListener(NetStatusEvent.NET_STATUS, netStatusHandler);
+          }
+          ncConnected = false;
+          ncConnectedLabel.text = "no";
+          ncConnectedLabel.setStyle("color", 0xff0000);
+          isRecording = false;
+          recLabel.visible = false;
+          /* fall through */
+          
+        case "NetStream.Connect.Closed":
+        case "NetStream.Connect.Failed":
+        case "NetStream.Connect.Rejected":
+          if (ns != null) {
+            ns.removeEventListener(NetStatusEvent.NET_STATUS, netStatusHandler);
+          }
+          detach();
+          nsConnectedLabel.text = "no";
+          nsConnectedLabel.setStyle("color", 0xff0000);
+          
+          clearInterval(intervalId);
+          timeLabel.text = "";
+          durationLabel.text = "";
+          
+          ns = null;
+          break;
+          
+        case "NetStream.Publish.Start":
+          durationLabel.text = "";
+          isRecording = true;
+          recLabel.visible = true;
+          /* fall through */
+          
+        case "NetStream.Play.Start":
+          intervalId = setInterval(updateTime, 100);
+          nsConnectedLabel.text = "yes";
+          nsConnectedLabel.setStyle("color", 0x00ff00);
+          break;
+          
+        default:
+			}      
+		}
+    
+    private function updateTime():void {
+      if (ns != null) {
+        timeLabel.text = String(Math.round(ns.time * 10) / 10);
+      }
+    }
+		
+		public function onBWDone(o:Object): void {
+			dbg("onBWDone(): argument=" + o);
+		}
+
+		public function onNetStreamData(o:Object):void {
+			dbg("onNetStreamData(): argument=" + o);
+			dbg("playback ns.time="+ ns.time);
+		}
+		
+		public function onMetaData(info:Object):void {
+			dbg("onMetaData(): duration=" + info.duration);
+      durationLabel.text = String(Math.round(info.duration * 10) / 10);
+		}
+		
+		public function onPlayStatus(info:Object):void {
+			dbg("onPlayStatus(): " + info.code);
+		}
+    
+    public function authOk():void {
+      dbg("authOk() called from server");
+    }
+		]]></fx:Script>
+	<mx:TextArea x="5" y="164" width="489" height="333" id="dbgText" text="Log&#13;" contentBackgroundColor="#EEEEEE" borderColor="#000000" fontSize="10"/>
+	<mx:TextInput x="31" y="6" id="urlText" text="" width="160" fontFamily="Arial" fontSize="10" height="17"/>
+	<mx:TextInput x="24" y="76" id="idText" text="" width="104" fontFamily="Arial" fontSize="10" height="17"/>
+	<mx:TextInput x="73" y="103" id="seekText" text="0" width="33" fontFamily="Arial" fontSize="10" height="17"/>
+	<mx:Label x="5" y="8" text="URL" fontFamily="Arial" fontSize="10" color="#FFFFFF"/>
+	<mx:Label x="6" y="77" text="ID" fontFamily="Arial" fontSize="10" color="#FFFFFF"/>
+	<mx:Button x="195" y="6" label="nc.connect()" 
+    click="ncConnect()" width="86" textAlign="center" 
+    fontFamily="Arial" fontSize="10" height="17" chromeColor="#00FF00"/>
+	<mx:Button x="203" y="76" label="ns.publish()" 
+	click="nsPublish()" width="77" textAlign="center" 
+	fontFamily="Arial" fontSize="10" height="17"/>
+	<mx:Button x="220" y="24" label="ns.close()" 
+    click="nsClose()" width="61" textAlign="center" 
+    fontFamily="Arial" fontSize="10" height="17" chromeColor="#FFFF00"/>
+	<mx:Button x="219" y="133" label="clear log" 
+	  click="clearLog()" width="61" textAlign="center" 
+	  fontFamily="Arial" fontSize="10" height="17"/>
+	<mx:Button x="177" y="133" label="infos" 
+	  click="infos()" width="40" textAlign="center" 
+	  fontFamily="Arial" fontSize="10" height="17"/>
+	<mx:Button x="132" y="76" label="ns.play()" 
+	click="nsPlay()" width="69" 
+	  fontFamily="Arial" fontSize="10" height="17"/>
+	<mx:Button x="41" y="24" label="new NetStream()" 
+	click="nsNew()" width="99" textAlign="center" 
+	fontFamily="Arial" fontSize="10" height="17" chromeColor="#00FF00"/>
+	<mx:Button x="143" y="24" label="nc.close()" 
+	click="ncClose()" width="75" textAlign="center" 
+	fontFamily="Arial" fontSize="10" height="17" chromeColor="#FFFF00"/>
+	<mx:Button x="187" y="50" label="detach camera" 
+	click="detach()" width="95" textAlign="center" 
+	fontFamily="Arial" fontSize="10" height="17" chromeColor="#FFFF00"/>
+	<mx:Button x="145" y="103" label="pause" 
+	click="nsPause()" width="46" textAlign="left" 
+	  fontFamily="Arial" fontSize="10" height="17"/>
+	<mx:Button x="132" y="50" label="record" id="attachRecordButton"
+	click="attachRecord()" width="53" textAlign="center" 
+	fontFamily="Arial" fontSize="10" height="17"/>
+	<mx:Button x="85" y="50" label="play" id="attachPlayButton"
+	click="attachPlay()" width="45" textAlign="center" 
+	fontFamily="Arial" fontSize="10" height="17"/>
+	<mx:Label x="7" y="51" text="Attach camera" fontFamily="Arial" fontSize="10" color="#FFFFFF" width="84"/>
+	<s:BorderContainer x="288" y="6" width="206" height="156" borderColor="#737E87" borderWeight="3">
+  	<mtrude:SimpleVideo width="200" height="150" id="video"/>
+  	<s:Label x="15" y="131" id="recLabel" text="Rec" fontFamily="Arial" fontWeight="bold" fontSize="10" color="#FF0000"/>
+	</s:BorderContainer>
+	<s:Label x="7" y="155" text="Connected:    NetConnection: " fontFamily="Arial" color="#FFFFFF" fontSize="10"/>
+	<s:Label x="2" y="101" text="length" fontFamily="Arial" color="#FFFFFF" fontSize="10" width="34" height="13" textAlign="right"/>
+	<s:Label x="3" y="111" text="time " fontFamily="Arial" color="#FFFFFF" fontSize="10" width="34" height="13" textAlign="right"/>
+	<s:Label x="139" y="155" id="ncConnectedLabel" text="no" fontFamily="Arial" fontWeight="bold" fontSize="10" color="#FF0000"/>
+	<s:Label x="38" y="101" id="durationLabel" text="" fontFamily="Arial" fontWeight="bold" fontSize="10" color="#FFFFFF" textAlign="right" width="34" height="12"/>
+	<s:Label x="38" y="111" id="timeLabel" text="" fontFamily="Arial" fontWeight="bold" fontSize="10" color="#FFFFFF" textAlign="right" width="34" height="12"/>
+	<s:Label x="214" y="155" id="nsConnectedLabel" text="no" fontFamily="Arial" fontWeight="bold" fontSize="10" color="#FF0000"/>
+	<s:Label x="164" y="155" text="NetStream: " fontFamily="Arial" color="#FFFFFF" fontSize="10"/>
+	<mx:Button x="191" y="103" label="resume" 
+	click="nsResume()" width="52" textAlign="left" 
+	  fontFamily="Arial" fontSize="10" height="17"/>
+	<mx:Button x="243" y="103" label="stop" 
+	click="stop()" width="38" textAlign="left" 
+	  fontFamily="Arial" fontSize="10" height="17" chromeColor="#FF6F57"/>
+	<mx:Button x="107" y="103" label="seek" 
+	click="nsSeek()" width="38" textAlign="left" 
+	  fontFamily="Arial" fontSize="10" height="17"/>
+</s:Application>

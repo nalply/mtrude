@@ -1,6 +1,6 @@
 require('colors');
 var net = require('net');
-var ChunkStream = require('mstream').rtmp.ChunkStream;
+var ChunkStream = require('mtrude').rtmp.ChunkStream;
 
 var server = net.createServer();
 server.on('connection', function(socket) {
@@ -30,4 +30,11 @@ server.on('connection', function(socket) {
 server.listen(1935);
 console.log();
 console.log('Listening on port 1935');
+console.log(''
+  + 'Note: ChunkStream is not complete without MessageStream and might not\n'
+  + 'always work correctly (for example mis-synchronization due to a missing\n'
+  + 'implementation of "Set Chunk Size" (RTMP Message Formats 5.1).\n'
+  + 'Consider using MessageStreamDumper.js instead.'
+);
+
 
