@@ -1,0 +1,13 @@
+{
+    "name": "mstream"
+  , "description": "A layered media streaming server"
+  , "keywords": [ "streaming", "server", "media", "rtmp"]
+  , "author": "Daniel Ly <daniel.ly@lively5.ch> (http://lively5.ch)"
+  , "version": "0.0.0"
+  , "main": "lib/mstream.js"
+  , "repository": { "type": "git", "url": "git://github.com/nalply/mstream.git" }
+  , "dependencies": {
+    "color": "0.4.1"
+  }
+}
+
