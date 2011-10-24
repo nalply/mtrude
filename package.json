@@ -6,8 +6,9 @@
   , "version": "0.0.0"
   , "main": "lib/mtrude.js"
   , "repository": { "type": "git", "url": "git://github.com/nalply/mtrude.git" }
+  , "engines": { "node" : ">= 0.5.10" }
   , "dependencies": {
-    "color": "0.4.1"
+    "colors": "0.5.1"
   }
 }
 
