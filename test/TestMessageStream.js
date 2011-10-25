@@ -2,8 +2,10 @@
 
 var assert = require('assert');
 var fs = require('fs');
-var ChunkStream = require('mtrude').rtmp.ChunkStream;
-var MessageStream = require('mtrude').rtmp.MessageStream;
+var mtrude = require('mtrude');
+var ChunkStream = mtrude.rtmp.ChunkStream;
+var MessageStream = mtrude.rtmp.MessageStream;
+var AMF = mtrude.rtmp.AMF;
 
 var asSocket = require('./fixtures/asSocket');
 
@@ -25,15 +27,26 @@ module.exports = {
       assert.equal(message.msid, 0);
       assert.equal(message.typeid, [20][messageIndex]);
       assert.equal(message.data.length, [235][messageIndex]);
+
+      if (messageIndex == 0) {
+        var invokeParameters = AMF.deserialize(message.data);
+        assert.equal(invokeParameters.length, 3);
+        assert.equal(invokeParameters[0], 'connect');
+        assert.equal(invokeParameters[1], 1);
+        assert.equal(Object.keys(invokeParameters[2]).join(':'), ''
+          + 'app:flashVer:swfUrl:tcUrl:fpad:capabilities:audioCodecs'
+          + ':videoCodecs:videoFunction:pageUrl:objectEncoding');
+      }
+
       messageIndex++;
     });
     ms.on('end', function(graceful) {
       assert(graceful, 'not a graceful end');
+      assert.equal(messageIndex, 1, messageIndex + ' == 1');
       end = true;
     });
-    process.on('exit', function() {
+    process.on('exit', function() { // todo is never emitted
       console.log('process.onExit');
-      assert.equal(messageIndex, 0, messageIndex + ' == 1');
       assert(end, 'end has not been emitted');
     });
   },

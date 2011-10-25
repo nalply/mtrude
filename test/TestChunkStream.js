@@ -33,10 +33,10 @@ module.exports = {
     });
     cs.on('end', function(graceful) {
       assert(graceful, 'not a graceful end');
+      assert.equal(chunkIndex, 3, chunkIndex + ' == 3');
       end = true;
     });
     process.on('exit', function() {
-      assert.equal(chunkIndex, 0, chunkIndex + ' == 3');
       assert(handshake, 'handshake has not been emitted');
       assert(end, 'end has not been emitted');
     });
