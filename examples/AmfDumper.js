@@ -1,5 +1,6 @@
 require('colors');
 var net = require('net');
+var util = require('util');
 var mtrude = require('mtrude');
 var ChunkStream = mtrude.rtmp.ChunkStream;
 var MessageStream = mtrude.rtmp.MessageStream;
@@ -10,9 +11,12 @@ server.on('connection', function(socket) {
   console.log('Connection from %s', socket.remoteAddress);
   var messageStream = new MessageStream(new ChunkStream(socket));
 
-  messageStream.on('error', function(exception) {
-    console.log(exception.stack);
+  messageStream.on('error', function(msg) {
+    console.log('ERROR %s'.red, msg);
     server.close();
+  });
+  messageStream.on('warn', function(msg) {
+    console.log('WARN %s'.magenta, msg);
   });
   messageStream.on('end', function(graceful) {
     console.log('END  :', 'Ended', (graceful ? '' : 'not ') + 'gracefully');
@@ -22,7 +26,7 @@ server.on('connection', function(socket) {
       'MESSAGE: %s:%s typeid=%s data=%s'.blue, message.csid,
       message.msid, message.typeid, message.data.length);
     if (message.typeid == 20) {
-      console.log('INVOKE'.red, AMF.deserialize(message.data));
+      console.log('INVOKE'.green, util.inspect(AMF.deserialize(message.data)));
     }
   });
 });
