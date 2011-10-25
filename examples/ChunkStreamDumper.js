@@ -1,3 +1,5 @@
+"use strict";
+
 require('colors');
 var net = require('net');
 var ChunkStream = require('mtrude').rtmp.ChunkStream;
