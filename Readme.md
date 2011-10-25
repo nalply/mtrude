@@ -20,17 +20,20 @@ is cheap at the same time.
 ### Buffer
 
 With node.js 0.6.0 onward the binary buffer is more powerful with binary data types (it
-understands IEEE 754 (Javascript Number or C double) out of the box). Additionally there
-is the buffer chain with the same interface as the binary buffer hiding that binary data
-did not arrive in whole.
+understands IEEE 754 (Javascript Number or C double) out of the box). Additionally mtrude
+provides a buffer chain with the same interface as the binary buffer. With chunking data
+does not arrive in whole. Buffer Chain copies data or shims the access (I still don't
+know which is better, I am trying out a shim).
 
 ### Network layers
 
 RTMP uses a Chunk Stream as a low-level TCP protocol and a Message Stream protocol 
-to multiplex messages onto a single `NetConnection` instance. `ChunkStream` is a wrapper
-around a socket (or a bidirectional node.js stream like a two-way pipe) and emits
-events like 'handshake' and 'chunk'. `MessageStream` agains wraps a `ChunkStream` and
-emits 'message' events. `MessageStream` can again be wrapped by an RTMP application.
+to multiplex messages onto a single ActionScript3 `NetConnection` instance. 
+mtrude's `ChunkStream` is a wrapper around a socket (or a bidirectional node.js 
+stream like a two-way pipe) and emits events like 'handshake' and 'chunk'.
+mtrude's `MessageStream` agains wraps a `ChunkStream` and
+emits 'message' events. `MessageStream` can again be wrapped by an RTMP
+application.
 
 ### SSL
 
