@@ -2,9 +2,10 @@
 
 var assert = require('assert');
 var fs = require('fs');
-var ChunkStream = require('mtrude').rtmp.ChunkStream;
+var mtrude = require('mtrude');
+var ChunkStream = mtrude.rtmp.ChunkStream;
 
-var asSocket = require('./fixtures/asSocket');
+var mockSocket = require('./fixtures/Tools').mockSocket;
 
 
 module.exports = {
@@ -14,8 +15,7 @@ module.exports = {
     var length = 0;
     var chunkIndex = 0;
 
-    var outgoing = 'test/out-' + new Date().getTime().toString(36);
-    var cs = new ChunkStream(asSocket('test/incoming', outgoing));
+    var cs = new ChunkStream(mockSocket('incoming1'));
     cs.on('error', function(err) {
       assert(false, 'error emitted: ' + err);
     });

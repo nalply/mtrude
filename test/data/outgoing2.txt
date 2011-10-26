@@ -1,0 +1,35 @@
+header@00000c01: init=02 streamid=2 hdr=('\x00\x00\x00', 1029, 0); 	4/4 bytes [RTMP_SERVER]
+<RTMPMessage st=2 type=RTMP_SERVER[05] peer=00000000 time=0 len=4>
+000000: 00 26 25 a0                                      |.&%.            |
+header@00000c11: init=02 streamid=2 hdr=('\x00\x00\x00', 1286, 0); 	5/5 bytes [RTMP_CLIENT]
+<RTMPMessage st=2 type=RTMP_CLIENT[06] peer=00000000 time=0 len=5>
+000000: 00 26 25 a0 02                                   |.&%..           |
+header@00000c22: init=02 streamid=2 hdr=('\x00\x00\x00', 1540, 0); 	6/6 bytes [RTMP_PING]
+<RTMPMessage st=2 type=RTMP_PING[04] peer=00000000 time=0 len=6>
+000000: 00 00 00 00 00 00                                |......          |
+header@00000c34: init=03 streamid=3 hdr=('\x00\x00\x00', 48404, 0); 	189/128 bytes [RTMP_INVOKE]
+header@00000cc0: init=c3 streamid=3 hdr=None; 	61/61 bytes [RTMP_INVOKE]
+<RTMPMessage st=3 type=RTMP_INVOKE[14] peer=00000000 time=0 len=189>
+000000: 02 00 07 5f 72 65 73 75 6c 74 00 3f f0 00 00 00  |..._result.?....|
+000010: 00 00 00 03 00 06 66 6d 73 56 65 72 02 00 0d 46  |......fmsVer...F|
+000020: 4d 53 2f 33 2c 30 2c 31 2c 31 32 33 00 0c 63 61  |MS/3,0,1,123..ca|
+000030: 70 61 62 69 6c 69 74 69 65 73 00 40 3f 00 00 00  |pabilities.@?...|
+000040: 00 00 00 00 00 09 03 00 05 6c 65 76 65 6c 02 00  |.........level..|
+000050: 06 73 74 61 74 75 73 00 04 63 6f 64 65 02 00 1d  |.status..code...|
+000060: 4e 65 74 43 6f 6e 6e 65 63 74 69 6f 6e 2e 43 6f  |NetConnection.Co|
+000070: 6e 6e 65 63 74 2e 53 75 63 63 65 73 73 00 0b 64  |nnect.Success..d|
+000080: 65 73 63 72 69 70 74 69 6f 6e 02 00 14 43 6f 6e  |escription...Con|
+000090: 6e 65 63 74 69 6f 6e 20 73 75 63 63 65 65 64 65  |nection succeede|
+0000a0: 64 00 0e 6f 62 6a 65 63 74 45 6e 63 6f 64 69 6e  |d..objectEncodin|
+0000b0: 67 00 40 08 00 00 00 00 00 00 00 00 09           |g.@..........   |
+[03] RTMP_INVOKE ['_result', 1.0, {'capabilities': 31.0, 'fmsVer': 'FMS/3,0,1,123'}, {'code': 'NetConnection.Connect.Success', 'objectEncoding': 3.0, 'description': 'Connection succeeded', 'level': 'status'}]
+header@00000cfe: init=43 streamid=3 hdr=('\x00\x00\x00', 7700); 	30/30 bytes [RTMP_INVOKE]
+<RTMPMessage st=3 type=RTMP_INVOKE[14] peer=00000000 time=0 len=30>
+000000: 02 00 08 6f 6e 42 57 44 6f 6e 65 00 00 00 00 00  |...onBWDone.....|
+000010: 00 00 00 00 05 00 40 c0 00 00 00 00 00 00        |......@.......  |
+[03] RTMP_INVOKE ['onBWDone', 0.0, None, 8192.0]
+header@00000d24: init=43 streamid=3 hdr=('\x00\x00\x00', 7444); 	29/29 bytes [RTMP_INVOKE]
+<RTMPMessage st=3 type=RTMP_INVOKE[14] peer=00000000 time=0 len=29>
+000000: 02 00 07 5f 72 65 73 75 6c 74 00 40 00 00 00 00  |..._result.@....|
+000010: 00 00 00 05 00 3f f0 00 00 00 00 00 00           |.....?.......   |
+[03] RTMP_INVOKE ['_result', 2.0, None, 1.0]

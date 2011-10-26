@@ -1,0 +1,284 @@
+header@00000c01: init=02 streamid=2 hdr=('\x00\x00\x00', 1029, 0); 	4/4 bytes [RTMP_SERVER]
+<RTMPMessage st=2 type=RTMP_SERVER[05] peer=00000000 time=0 len=4>
+000000: 00 26 25 a0                                      |.&%.            |
+header@00000c11: init=02 streamid=2 hdr=('\x00\x00\x00', 1286, 0); 	5/5 bytes [RTMP_CLIENT]
+<RTMPMessage st=2 type=RTMP_CLIENT[06] peer=00000000 time=0 len=5>
+000000: 00 26 25 a0 02                                   |.&%..           |
+header@00000c22: init=02 streamid=2 hdr=('\x00\x00\x00', 1540, 0); 	6/6 bytes [RTMP_PING]
+<RTMPMessage st=2 type=RTMP_PING[04] peer=00000000 time=0 len=6>
+000000: 00 00 00 00 00 00                                |......          |
+header@00000c34: init=03 streamid=3 hdr=('\x00\x00\x00', 48404, 0); 	189/128 bytes [RTMP_INVOKE]
+header@00000cc0: init=c3 streamid=3 hdr=None; 	61/61 bytes [RTMP_INVOKE]
+<RTMPMessage st=3 type=RTMP_INVOKE[14] peer=00000000 time=0 len=189>
+000000: 02 00 07 5f 72 65 73 75 6c 74 00 3f f0 00 00 00  |..._result.?....|
+000010: 00 00 00 03 00 06 66 6d 73 56 65 72 02 00 0d 46  |......fmsVer...F|
+000020: 4d 53 2f 33 2c 30 2c 31 2c 31 32 33 00 0c 63 61  |MS/3,0,1,123..ca|
+000030: 70 61 62 69 6c 69 74 69 65 73 00 40 3f 00 00 00  |pabilities.@?...|
+000040: 00 00 00 00 00 09 03 00 05 6c 65 76 65 6c 02 00  |.........level..|
+000050: 06 73 74 61 74 75 73 00 04 63 6f 64 65 02 00 1d  |.status..code...|
+000060: 4e 65 74 43 6f 6e 6e 65 63 74 69 6f 6e 2e 43 6f  |NetConnection.Co|
+000070: 6e 6e 65 63 74 2e 53 75 63 63 65 73 73 00 0b 64  |nnect.Success..d|
+000080: 65 73 63 72 69 70 74 69 6f 6e 02 00 14 43 6f 6e  |escription...Con|
+000090: 6e 65 63 74 69 6f 6e 20 73 75 63 63 65 65 64 65  |nection succeede|
+0000a0: 64 00 0e 6f 62 6a 65 63 74 45 6e 63 6f 64 69 6e  |d..objectEncodin|
+0000b0: 67 00 40 08 00 00 00 00 00 00 00 00 09           |g.@..........   |
+[03] RTMP_INVOKE ['_result', 1.0, {'capabilities': 31.0, 'fmsVer': 'FMS/3,0,1,123'}, {'code': 'NetConnection.Connect.Success', 'objectEncoding': 3.0, 'description': 'Connection succeeded', 'level': 'status'}]
+header@00000cfe: init=43 streamid=3 hdr=('\x00\x00\x00', 7700); 	30/30 bytes [RTMP_INVOKE]
+<RTMPMessage st=3 type=RTMP_INVOKE[14] peer=00000000 time=0 len=30>
+000000: 02 00 08 6f 6e 42 57 44 6f 6e 65 00 00 00 00 00  |...onBWDone.....|
+000010: 00 00 00 00 05 00 40 c0 00 00 00 00 00 00        |......@.......  |
+[03] RTMP_INVOKE ['onBWDone', 0.0, None, 8192.0]
+header@00000d24: init=43 streamid=3 hdr=('\x00\x00\x00', 7444); 	29/29 bytes [RTMP_INVOKE]
+<RTMPMessage st=3 type=RTMP_INVOKE[14] peer=00000000 time=0 len=29>
+000000: 02 00 07 5f 72 65 73 75 6c 74 00 40 00 00 00 00  |..._result.@....|
+000010: 00 00 00 05 00 3f f0 00 00 00 00 00 00           |.....?.......   |
+[03] RTMP_INVOKE ['_result', 2.0, None, 1.0]
+header@00000d49: init=02 streamid=2 hdr=('\x00\x00\x00', 1540, 0); 	6/6 bytes [RTMP_PING]
+<RTMPMessage st=2 type=RTMP_PING[04] peer=00000000 time=0 len=6>
+000000: 00 04 00 00 00 01                                |......          |
+header@00000d5b: init=02 streamid=2 hdr=('\x00\x00\x00', 1540, 0); 	6/6 bytes [RTMP_PING]
+<RTMPMessage st=2 type=RTMP_PING[04] peer=00000000 time=0 len=6>
+000000: 00 00 00 00 00 01                                |......          |
+header@00000d6d: init=14 streamid=20 hdr=('\x00\x00\x00', 34324, 16777216); 	134/128 bytes [RTMP_INVOKE]
+header@00000df9: init=d4 streamid=20 hdr=None; 	6/6 bytes [RTMP_INVOKE]
+<RTMPMessage st=20 type=RTMP_INVOKE[14] peer=01000000 time=0 len=134>
+000000: 02 00 08 6f 6e 53 74 61 74 75 73 00 00 00 00 00  |...onStatus.....|
+000010: 00 00 00 00 05 03 00 05 6c 65 76 65 6c 02 00 06  |........level...|
+000020: 73 74 61 74 75 73 00 04 63 6f 64 65 02 00 14 4e  |status..code...N|
+000030: 65 74 53 74 72 65 61 6d 2e 50 6c 61 79 2e 52 65  |etStream.Play.Re|
+000040: 73 65 74 00 0b 64 65 73 63 72 69 70 74 69 6f 6e  |set..description|
+000050: 02 00 08 72 65 73 65 74 2e 2e 2e 00 07 64 65 74  |...reset.....det|
+000060: 61 69 6c 73 02 00 02 74 30 00 08 63 6c 69 65 6e  |ails...t0..clien|
+000070: 74 69 64 02 00 0d 34 5f 31 5f 31 35 32 33 39 32  |tid...4_1_152392|
+000080: 37 38 34 00 00 09                                |784...          |
+[20] RTMP_INVOKE ['onStatus', 0.0, None, {'details': 't0', 'code': 'NetStream.Play.Reset', 'description': 'reset...', 'clientid': '4_1_152392784', 'level': 'status'}]
+header@00000e00: init=14 streamid=20 hdr=('\x00\x00\x00', 34324, 16777216); 	134/128 bytes [RTMP_INVOKE]
+header@00000e8c: init=d4 streamid=20 hdr=None; 	6/6 bytes [RTMP_INVOKE]
+<RTMPMessage st=20 type=RTMP_INVOKE[14] peer=01000000 time=0 len=134>
+000000: 02 00 08 6f 6e 53 74 61 74 75 73 00 00 00 00 00  |...onStatus.....|
+000010: 00 00 00 00 05 03 00 05 6c 65 76 65 6c 02 00 06  |........level...|
+000020: 73 74 61 74 75 73 00 04 63 6f 64 65 02 00 14 4e  |status..code...N|
+000030: 65 74 53 74 72 65 61 6d 2e 50 6c 61 79 2e 53 74  |etStream.Play.St|
+000040: 61 72 74 00 0b 64 65 73 63 72 69 70 74 69 6f 6e  |art..description|
+000050: 02 00 08 73 74 61 72 74 2e 2e 2e 00 07 64 65 74  |...start.....det|
+000060: 61 69 6c 73 02 00 02 74 30 00 08 63 6c 69 65 6e  |ails...t0..clien|
+000070: 74 69 64 02 00 0d 34 5f 31 5f 31 35 32 33 39 32  |tid...4_1_152392|
+000080: 37 38 34 00 00 09                                |784...          |
+[20] RTMP_INVOKE ['onStatus', 0.0, None, {'details': 't0', 'code': 'NetStream.Play.Start', 'description': 'start...', 'clientid': '4_1_152392784', 'level': 'status'}]
+header@00000e93: init=14 streamid=20 hdr=('\x00\x00\x00', 6162, 16777216); 	24/24 bytes [RTMP_NOTIFY]
+<RTMPMessage st=20 type=RTMP_NOTIFY[12] peer=01000000 time=0 len=24>
+000000: 02 00 11 7c 52 74 6d 70 53 61 6d 70 6c 65 41 63  |...|RtmpSampleAc|
+000010: 63 65 73 73 01 00 01 00                          |cess....        |
+header@00000eb7: init=14 streamid=20 hdr=('\x00\x00\x00', 11282, 16777216); 	44/44 bytes [RTMP_NOTIFY]
+<RTMPMessage st=20 type=RTMP_NOTIFY[12] peer=01000000 time=0 len=44>
+000000: 02 00 08 6f 6e 53 74 61 74 75 73 03 00 04 63 6f  |...onStatus...co|
+000010: 64 65 02 00 14 4e 65 74 53 74 72 65 61 6d 2e 44  |de...NetStream.D|
+000020: 61 74 61 2e 53 74 61 72 74 00 00 09              |ata.Start...    |
+header@00000eef: init=14 streamid=20 hdr=('\x00\x00\x00', 26898, 16777216); 	105/105 bytes [RTMP_NOTIFY]
+<RTMPMessage st=20 type=RTMP_NOTIFY[12] peer=01000000 time=0 len=105>
+000000: 02 00 0a 6f 6e 4d 65 74 61 44 61 74 61 03 00 08  |...onMetaData...|
+000010: 64 75 72 61 74 69 6f 6e 00 3f b3 f7 ce d9 16 87  |duration.?......|
+000020: 2b 00 06 53 65 72 76 65 72 02 00 26 43 2b 2b 20  |+..Server..&C++ |
+000030: 52 54 4d 50 20 53 65 72 76 65 72 20 28 68 74 74  |RTMP Server (htt|
+000040: 70 3a 2f 2f 77 77 77 2e 72 74 6d 70 64 2e 63 6f  |p://www.rtmpd.co|
+000050: 6d 29 00 09 62 61 6e 64 77 69 64 74 68 00 00 00  |m)..bandwidth...|
+000060: 00 00 00 00 00 00 00 00 09                       |.........       |
+header@00000f64: init=02 streamid=2 hdr=('\x00\x00\x00', 1025, 0); 	4/4 bytes [RTMP_CHUNK_SIZE]
+header@00000f74: init=15 streamid=21 hdr=('\x00\x00\x00', 352265, 16777216); 	1376/1376 bytes [RTMP_VIDEO_DATA]
+<RTMPMessage st=21 type=RTMP_VIDEO_DATA[09] peer=01000000 time=0 len=1376>
+000000: 12 00 00 84 03 02 99 c7 c8 c6 47 c7 9e 88 3f 39  |..........G...?9|
+000010: 18 f8 f8 f8 d8 99 c7 46 c7 47 45 c5 ce 2e 2a 32  |.......F.GE...*2|
+000020: 2e 22 3a 71 10 d1 31 10 72 13 85 83 87 85 7f 93  |.":q..1.r.......|
+000030: 9c 14 0c 24 13 dc b1 38 18 28 28 37 79 83 e4 e1  |...$...8.((7y...|
+000040: 21 e1 62 1d 26 cf 91 c4 c4 9f 8b 8d 71 9e 3e ce  |!.b.&.......q.>.|
+000050: 26 36 1e 2e 24 f4 71 f4 71 d1 d1 b1 b1 07 a3 91  |&6..$.q.q.......|
+000060: c7 47 46 c6 c3 9e 8f 9c 6c 64 6c 6c 2c 84 e2 a2  |.GF.....ldll,...|
+000070: 63 22 e0 64 a7 11 0f 15 12 fb 2b b8 68 1f 4b 5a  |c".d......+.h.KZ|
+000080: 3b 02 25 17 02 19 7c 54 4e 9c 10 82 11 70 95 31  |;.%...|TN....p.1|
+000090: 57 ba cf c4 5a 38 20 79 98 7b 68 30 12 41 04 78  |W...Z8 y.{h0.A.x|
+0000a0: 3d 1e 62 6b ca 34 7a 1f 89 0a c7 d7 3e e3 d3 c6  |=.bk.4z.....>...|
+0000b0: b0 7d ac 1f 78 3f 32 79 cc 34 4a 30 07 83 00 30  |.}..x?2y.4J0...0|
+0000c0: 5c 25 cb 62 a0 3c ac 0c f8 a7 c6 60 80 3c 21 0f  |\%.b.<.....`.<!.|
+0000d0: c0 31 58 f0 be 24 fb 0f 73 f5 74 f7 e5 76 62 e3  |.1X..$..s.t..vb.|
+0000e0: e4 80 26 50 02 5b a9 19 c3 44 c5 c4 7f 9e 94 3e  |..&P.[...D.....>|
+0000f0: 8e 2e 2e 26 26 04 f4 9a 38 c8 d8 a8 b8 13 d2 73  |...&&...8......s|
+000100: 8d 8d 8c 8d ff 93 9c 6c 6c 74 73 f4 a4 b1 b1 91  |.......llts.....|
+000110: f0 40 80 3e 05 08 43 1f 2a 5f e5 47 5e e5 8e be  |.@.>..C.*_.G^...|
+000120: 0c 00 88 40 50 aa 5c 03 aa c4 07 1c aa 1f 57 16  |...@P.\.......W.|
+000130: 80 72 af 7b 85 de 4a 19 90 7c b8 fb e4 a0 04 3c  |.r.{..J..|.....<|
+000140: c3 ce 1f 0c 8c d5 08 fc 27 1e f2 b4 4f 7b 7c a0  |........'...O{|.|
+000150: 64 f1 db ef 93 9d 83 00 de 01 de 12 d5 01 df 29  |d..............)|
+000160: 27 22 56 01 65 7f fe f1 ef ae 92 f9 e7 c4 03 00  |'"V.e...........|
+000170: e2 01 94 03 0b f9 d1 29 5f 4b a8 30 c0 55 3b a7  |.......)_K.0.U;.|
+000180: 4f ab 03 00 de 01 d0 4b 1f 2b 2e 06 11 f4 7d 40  |O......K.+....}@|
+000190: ba c4 34 34 e3 8a aa 7e 85 5b a3 8d 8d 8f 8e 92  |..44...~.[......|
+0001a0: 7a 98 92 22 22 2b d4 fc 33 dc bc e2 62 a1 e2 5f  |z..""+..3...b.._|
+0001b0: a5 67 17 1b 15 16 fd 29 38 e8 f8 d8 e7 c9 4b c8  |.g.....)8.....K.|
+0001c0: 3a 83 00 2b e0 60 5e fe ac 14 d2 16 d3 d1 ee 00  |:..+.`^.........|
+0001d0: c0 0b 03 04 f0 0c 1c 1a aa 81 5b 9e e5 9e 60 a8  |..........[...`.|
+0001e0: 4b 03 de 2e 90 0a bc b1 58 93 cb 82 3f ce 24 2a  |K.......X...?.$*|
+0001f0: 00 b3 9f 0c 5e cf 4b 29 a6 8e 4d 0b bc 5d 0b b1  |....^.K)..M..]..|
+000200: 2d 78 e2 b9 2c 25 29 55 f2 12 13 af b2 51 fc a8  |-x..,%)U.....Q..|
+000210: 33 31 79 25 87 cb 8b fc 71 f2 59 e8 81 07 d9 d7  |31y%....q.Y.....|
+000220: 47 83 00 dc 25 01 e1 26 ff c2 31 78 ed 22 f0 6a  |G...%..&..1x.".j|
+000230: 79 f0 3a 5c 4a e2 08 22 51 79 7c 56 3e f4 95 9e  |y.:\J.."Qy|V>...|
+000240: 94 12 bc 79 f3 35 da 8e 7c 8c 6b e3 f0 f3 cc c4  |...y.5..|.k.....|
+000250: 38 f8 72 12 3a 19 51 33 c4 d6 e0 e1 0f 3f 1e 7d  |8.r.:.Q3.....?.}|
+000260: 3c f5 31 98 68 77 f3 d0 27 9f 25 b7 13 14 7a 08  |<.1.hw..'.%...z.|
+000270: f4 21 e7 b9 67 c5 9e 76 06 00 46 e0 fd 5f 81 4e  |.!..g..v..F.._.N|
+000280: 5d 62 0b 3e 2e 85 3c f0 08 05 d5 58 43 2e 91 7d  |]b.>..<....XC..}|
+000290: 1a 3d 1e 98 3f d4 03 23 a2 e3 a9 d0 d1 c0 07 5c  |.=..?..#.......\|
+0002a0: 73 dc b9 c9 26 2a 8e 1e d2 42 ef 7f 7f af 1e 3e  |s...&*...B.....>|
+0002b0: fd 24 ec 0f 9c 28 00 b2 02 57 bf c9 3c f7 e3 af  |.$...(...W..<...|
+0002c0: 86 6b 85 f4 78 24 fb e4 a7 82 5c 1d d2 26 a0 0d  |.k..x$....\..&..|
+0002d0: 1f c6 96 7c 15 f9 e9 25 07 df 06 5e 24 2b 1f 0f  |...|...%...^$+..|
+0002e0: c0 f1 7c cb 0a 97 84 91 2a 2e 29 25 5a 00 f2 ef  |..|.....*.)%Z...|
+0002f0: 50 0e 2f 2f 56 df b5 47 d9 9b 73 12 5a 61 af c1  |P.//V..G..s.Za..|
+000300: 08 18 10 6f 2e a0 ad 87 bc ca 2c 95 50 2d cc 64  |...o......,.P-.d|
+000310: 3b fa b1 f2 8a 03 bf f0 e3 ac d5 9e fc 75 d8 f3  |;............u..|
+000320: e2 a3 6e 6e d3 74 76 3c f0 01 0e 4e 6f 13 4d 9e  |..nn.tv<...No.M.|
+000330: 80 21 f0 f3 d5 a3 bc 24 79 75 3d 38 7f 0f a7 9c  |.!.....$yu=8....|
+000340: 40 33 e3 c0 86 5d 53 e0 11 87 9e 5e 27 29 f7 49  |@3...]S....^').I|
+000350: d3 a6 c3 67 c2 51 95 81 28 4b 54 af 24 11 f3 ae  |...g.Q..(KT.$...|
+000360: 41 06 80 11 ea 59 dc cd c5 21 91 c8 04 9a 03 01  |A....Y...!......|
+000370: f3 58 3c f9 29 b2 12 47 9a 01 f2 f2 73 40 43 ad  |.X<.)..G....s@C.|
+000380: 7c 6a ff 24 f3 70 83 cf 57 c4 82 0f ff f5 62 5f  ||j.$.p..W.....b_|
+000390: d8 8f 3c 00 f0 60 61 1e fc 01 aa 87 4a f0 cc 51  |..<..`a.....J..Q|
+0003a0: 78 0e 8a 00 a6 cb c1 0f ea 44 a0 84 24 32 25 89  |x........D..$2%.|
+0003b0: 73 52 4e d1 8a 8a b1 f2 86 8d 2f 71 58 30 0e 03  |sRN......./qX0..|
+0003c0: e5 50 46 08 42 56 a3 f8 86 e4 18 3b 5a 47 4b 47  |.PF.BV.....;ZGKG|
+0003d0: 0e 8a 55 e6 c6 8f 5e 2f 12 a2 b0 b5 c4 bc 4a be  |..U...^/......J.|
+0003e0: 72 57 d5 1e 56 57 e9 4e 3d 2a a7 24 4b c3 27 4f  |rW..VW.N=*.$K.'O|
+0003f0: 41 93 9b 20 21 7b cd 39 a9 ef 27 e5 c0 21 db 9b  |A.. !{.9..'..!..|
+000400: a9 f7 17 bb 1e 7b 3f 2a 01 0f 7c ad 9f 7f 94 76  |.....{?*..|....v|
+000410: 0d 58 13 eb ff fc 23 d0 a1 e3 c7 65 fe 72 6f 2f  |.X....#....e.ro/|
+000420: 4f 0f 0e 93 af 78 f2 ba ab f3 f0 c2 58 f8 7f 15  |O....x......X...|
+000430: 97 4f c0 68 9f 9d 55 09 45 e2 5f d4 17 7a fe 92  |.O.h..U.E._..z..|
+000440: 2b 09 02 42 b1 22 02 12 b6 db 7b b8 67 32 19 74  |+..B."....{.g2.t|
+000450: 40 09 41 72 29 c4 10 c9 ee 52 c6 c1 91 a7 fc 7c  |@.Ar)....R.....||
+000460: cc 32 2f 7d 93 7a 40 92 a6 4a e6 72 f1 20 7a ab  |.2/}.z@..J.r. z.|
+000470: 24 3e 6a af d3 f0 ea 39 74 82 41 7e 7c 0d 56 40  |$>j....9t.A~|.V@|
+000480: c3 e1 15 f8 02 63 bd 4f 35 61 06 00 46 82 84 4b  |.....c.O5a..F..K|
+000490: 00 d0 86 c7 cb c7 9e 02 9e 13 20 b3 03 00 36 0c  |.......... ...6.|
+0004a0: 0c 42 b0 60 fe e8 30 b0 4e 3f 87 1b 15 3a 0f c6  |.B.`..0.N?...:..|
+0004b0: 9e 97 f7 aa 32 40 9a 19 a9 41 15 20 bd f3 c6 a3  |....2@...A. ....|
+0004c0: 55 b7 48 fa e0 66 c8 f5 c5 66 18 de fb 1d 56 d7  |U.H..f...f....V.|
+0004d0: ba 36 3d cd fa 39 ef 6f 7d 54 23 bd e5 ef 45 c2  |.6=..9.o}T#...E.|
+0004e0: 3d 0a de 4b 99 22 94 2f 68 85 b3 18 07 03 00 20  |=..K."./h...... |
+0004f0: 24 80 7d 1d 45 1e 05 3f da 15 9e 0f 81 80 1d 12  |$.}.E..?........|
+000500: 3c 0c 0f e7 ea b2 c7 1a 83 00 2c 0d 0c 38 b3 cf  |<.........,..8..|
+000510: df 26 5c aa 3d e6 a2 4d 00 e0 80 a8 18 08 71 21  |.&\.=..M......q!|
+000520: 44 ff ff ed 50 95 97 a4 6d fa b7 a5 80 78 30 3e  |D...P...m....x0>|
+000530: e0 c2 3e c1 8a 47 84 77 bf fa ee a5 3d 1d 5d d0  |..>..G.w....=.].|
+000540: cf 1e f9 c7 bf 06 86 08 f0 1a 00 47 c9 28 8c a3  |...........G.(..|
+000550: 8b cb cb 9f e4 23 31 39 56 a8 02 4c 0c ff e4 00  |.....#19V..L....|
+header@000014e0: init=55 streamid=21 hdr=('\x00\x00N', 230665); 	901/901 bytes [RTMP_VIDEO_DATA]
+<RTMPMessage st=21 type=RTMP_VIDEO_DATA[09] peer=01000000 time=78 len=901>
+000000: 32 00 00 84 07 42 98 dc 87 b9 cd ee 5f 73 90 f7  |2....B......_s..|
+000010: 39 5d ce 4f 73 9c e4 f7 39 ce 5f 73 91 6e 73 8c  |9].Os...9._s.ns.|
+000020: 67 1f 1e e1 97 73 9c 75 1e e7 38 45 dc e7 1c 11  |g....s.u..8E....|
+000030: 77 39 c7 93 dc e7 39 3d d1 36 5d 24 c9 6b 5c 5d  |w9....9=.6]$.k\]|
+000040: f3 03 b1 9a 79 72 96 9b ba b0 bc ba 7f 75 83 c7  |....yr.......u..|
+000050: b7 db 1a 19 08 5b 84 8a 5d ff 74 ba 81 20 52 50  |.....[..].t.. RP|
+000060: 61 a0 88 04 a5 43 f8 5f a2 27 e3 7e 29 71 94 f7  |a....C._.'.~)q..|
+000070: 39 ce 4f 73 8e b9 3d ce 73 91 ee 73 84 7b 9c e7  |9.Os..=.s..s.{..|
+000080: 1c 49 b9 ce 49 b9 ca cb b1 4f 5a f4 53 52 08 67  |.I..I....OZ.SR.g|
+000090: 82 9e af 28 8c de 75 59 48 d1 83 7f 1d df 2c a9  |...(..uYH.....,.|
+0000a0: 88 4f ef e4 f7 ee b5 0e 9d 23 4f ce bf 8f 1e 29  |.O.......#O....)|
+0000b0: cd 24 3e 23 e1 c0 81 f5 4a 87 bb 78 9c 45 80 5d  |.$>#....J..x.E.]|
+0000c0: de 36 5d fc ca 7c d8 53 c2 11 72 bb b4 7c 5e 0c  |.6]..|.S..r..|^.|
+0000d0: 0f d2 a6 d6 fa aa d1 7f 93 3d c0 c0 07 09 7c f4  |.........=....|.|
+0000e0: 12 60 30 3f 81 03 67 d3 84 21 14 1a 48 3f 43 a4  |.`0?..g..!..H?C.|
+0000f0: c6 12 ee 22 8f 42 dc e4 bb 9c e4 f7 39 ce 11 ee  |...".B......9...|
+000100: 73 9c e4 5f e0 8d 57 bf c4 33 f4 5c ee e2 a0 61  |s.._..W..3.\...a|
+000110: 1e e0 30 b0 4a c5 a2 3e 5b aa f2 08 9e 50 94 f9  |..0.J..>[....P..|
+000120: 72 80 3f ff 2a bc 2e 53 07 b4 91 c3 83 a6 86 7a  |r.?.*..S.......z|
+000130: b0 3f 7e 5e af 1a f4 1e 79 d1 bc 26 1d 7c 8b 87  |.?~^....y..&.|..|
+000140: b5 98 4e 14 9f 8f 39 53 ce 9c 11 e2 45 67 5a 2b  |..N...9S....EgZ+|
+000150: d3 60 1c 24 0e a5 1f 50 60 81 2e 2a a0 67 d4 46  |.`.$...P`..*.g.F|
+000160: a3 41 f0 fe 0c 02 10 f2 97 cf 2b 9d 03 d7 32 01  |.A........+...2.|
+000170: b4 20 d1 41 43 29 ee 73 a3 d3 dc e7 39 3e 1e 73  |. .AC).s....9>.s|
+000180: 9c cf 0f 43 c9 73 8e 72 7b 80 c5 4c a3 e0 c3 01  |...C.s.r{..L....|
+000190: 15 7d ee 1e 08 b5 65 4a d0 28 a7 d2 64 9f f7 ad  |.}....eJ.(..d...|
+0001a0: c4 a7 40 fd c5 5c 36 04 c9 07 b9 54 2a 21 1f 06  |..@..\6....T*!..|
+0001b0: 85 f8 bc 7c f2 10 68 3f 5f e4 9c 97 d2 5f 1e 0c  |...|..h?_...._..|
+0001c0: 82 9e 5d 7a a8 f7 82 10 8f f2 e0 53 86 4a af 0b  |..]z.......S.J..|
+0001d0: be f0 84 01 9f 80 c0 7b 17 6f f0 77 84 cb c2 34  |.......{.o.w...4|
+0001e0: e4 42 3e 03 20 fe 67 4e c2 d1 01 a0 9d ab c1 05  |.B>. .gN........|
+0001f0: 90 a0 85 3d d2 3a 02 6b 92 ee 73 91 ee 73 80 d9  |...=.:.k..s..s..|
+000200: ec 02 1f 4f 3d ff e3 bc 24 7b 76 3d 36 7d 16 a1  |...O=...${v=6}..|
+000210: 98 06 7d f8 2f 72 64 d4 fa 7c 76 b5 1d ed d5 e6  |..}./rd..|v.....|
+000220: 33 59 22 26 10 ff 69 d1 f9 70 95 6b c1 80 72 04  |3Y"&..i..p.k..r.|
+000230: 21 28 ba 01 da f7 00 ec 84 a1 5f cf 12 c1 2c b9  |!(........_...,.|
+000240: 59 21 3f cb b4 ec 09 d9 00 a7 83 00 1a 10 4b f1  |Y!?...........K.|
+000250: 56 42 60 40 12 8b 87 85 c1 0b 5b 2f af 00 e0 86  |VB`@......[/....|
+000260: 3a 78 94 ac 18 20 54 cf 82 28 14 06 9b f9 62 30  |:x... T..(....b0|
+000270: a5 e7 45 f0 24 80 be 01 ac 96 16 0a 44 7c 2b 04  |..E.$.......D|+.|
+000280: e7 4e 18 70 b9 1f 0c ba 1e 45 b9 d1 e1 4f 74 27  |.N.p.....E...Ot'|
+000290: 73 85 44 c8 f7 39 c2 3e 15 e9 ff 97 7f 3a b4 10  |s.D..9.>.....:..|
+0002a0: 08 2f 95 5a 91 7a 23 44 af ec 05 27 d4 e5 60 60  |./.Z.z#D...'..``|
+0002b0: e4 f1 fd 12 ff 5a 38 5f 3a 6f ce 1f c7 27 a9 70  |.....Z8_:o...'.p|
+0002c0: 1e 00 f5 62 51 10 04 aa ae 0a 7a b2 f0 3c 10 72  |...bQ.....z..<.r|
+0002d0: 8c bf f1 28 bd 5a bc 34 0c 00 77 fc ac 7c ac 7a  |...(.Z.4..w..|.z|
+0002e0: 3e 60 c0 30 0d fe 57 e0 60 1c c2 00 1f 55 c1 ff  |>`.0..W.`....U..|
+0002f0: 9b 54 4f ec 50 77 a7 c2 93 9c 05 c3 8f 09 85 21  |.TO.Pw.........!|
+000300: 4b 93 b3 a4 8e 01 40 2d 16 e7 39 2e e8 f7 05 3d  |K.....@-..9....=|
+000310: dc 3e e1 e1 b0 10 48 14 f2 f8 3e e6 97 8e a2 c2  |.>....H...>.....|
+000320: 2a 28 61 5a 92 ef 75 40 30 9f af 00 f0 86 0d 10  |*(aZ..u@0.......|
+000330: 18 94 24 83 03 09 f2 28 75 63 a2 3c 7d 44 90 60  |..$....(uc.<}D.`|
+000340: 3e 55 8f a0 30 40 8a 94 d5 a7 15 56 88 4b a7 bd  |>U..0@.....V.K..|
+000350: ef 71 97 82 00 42 03 5e 02 81 9a a8 23 3a 75 ba  |.q...B.^....#:u.|
+000360: b1 f0 f4 7f 38 e9 53 91 1c 6d e3 4f 92 49 e7 43  |....8.S..m.O.I.C|
+000370: 27 79 e0 38 36 a7 50 69 77 fd 54 aa 47 09 cd 0d  |'y.86.Piw.T.G...|
+000380: c3 3f f7 c8 00                                   |.?...           |
+header@0000186d: init=54 streamid=20 hdr=('\x00\x00\x00', 26130); 	102/102 bytes [RTMP_NOTIFY]
+<RTMPMessage st=20 type=RTMP_NOTIFY[12] peer=01000000 time=0 len=102>
+000000: 02 00 0c 6f 6e 50 6c 61 79 53 74 61 74 75 73 03  |...onPlayStatus.|
+000010: 00 05 6c 65 76 65 6c 02 00 06 73 74 61 74 75 73  |..level...status|
+000020: 00 04 63 6f 64 65 02 00 17 4e 65 74 53 74 72 65  |..code...NetStre|
+000030: 61 6d 2e 50 6c 61 79 2e 43 6f 6d 70 6c 65 74 65  |am.Play.Complete|
+000040: 00 08 64 75 72 61 74 69 6f 6e 00 3f b3 f7 ce d9  |..duration.?....|
+000050: 16 87 2b 00 05 62 79 74 65 73 00 40 ac 56 00 00  |..+..bytes.@.V..|
+000060: 00 00 00 00 00 09                                |......          |
+header@000018db: init=54 streamid=20 hdr=('\x00\x00\x00', 36628); 	143/143 bytes [RTMP_INVOKE]
+<RTMPMessage st=20 type=RTMP_INVOKE[14] peer=01000000 time=0 len=143>
+000000: 02 00 08 6f 6e 53 74 61 74 75 73 00 00 00 00 00  |...onStatus.....|
+000010: 00 00 00 00 05 03 00 05 6c 65 76 65 6c 02 00 06  |........level...|
+000020: 73 74 61 74 75 73 00 04 63 6f 64 65 02 00 13 4e  |status..code...N|
+000030: 65 74 53 74 72 65 61 6d 2e 50 6c 61 79 2e 53 74  |etStream.Play.St|
+000040: 6f 70 00 0b 64 65 73 63 72 69 70 74 69 6f 6e 02  |op..description.|
+000050: 00 07 73 74 6f 70 2e 2e 2e 00 07 64 65 74 61 69  |..stop.....detai|
+000060: 6c 73 02 00 02 74 30 00 08 63 6c 69 65 6e 74 69  |ls...t0..clienti|
+000070: 64 02 00 0d 34 5f 31 5f 31 35 32 33 39 32 37 38  |d...4_1_15239278|
+000080: 34 00 06 72 65 61 73 6f 6e 02 00 00 00 00 09     |4..reason...... |
+[20] RTMP_INVOKE ['onStatus', 0.0, None, {'code': 'NetStream.Play.Stop', 'description': 'stop...', 'level': 'status', 'clientid': '4_1_152392784', 'reason': '', 'details': 't0'}]
+header@00001972: init=02 streamid=2 hdr=('\x00\x00\x00', 1540, 0); 	6/6 bytes [RTMP_PING]
+<RTMPMessage st=2 type=RTMP_PING[04] peer=00000000 time=0 len=6>
+000000: 00 01 00 00 00 01                                |......          |
+header@00001984: init=14 streamid=20 hdr=('\x00\x00\x00', 34836, 16777216); 	136/136 bytes [RTMP_INVOKE]
+<RTMPMessage st=20 type=RTMP_INVOKE[14] peer=01000000 time=0 len=136>
+000000: 02 00 08 6f 6e 53 74 61 74 75 73 00 00 00 00 00  |...onStatus.....|
+000010: 00 00 00 00 05 03 00 05 6c 65 76 65 6c 02 00 06  |........level...|
+000020: 73 74 61 74 75 73 00 04 63 6f 64 65 02 00 1e 4e  |status..code...N|
+000030: 65 74 53 74 72 65 61 6d 2e 50 6c 61 79 2e 55 6e  |etStream.Play.Un|
+000040: 70 75 62 6c 69 73 68 4e 6f 74 69 66 79 00 0b 64  |publishNotify..d|
+000050: 65 73 63 72 69 70 74 69 6f 6e 02 00 0e 75 6e 70  |escription...unp|
+000060: 75 62 6c 69 73 68 65 64 2e 2e 2e 00 08 63 6c 69  |ublished.....cli|
+000070: 65 6e 74 69 64 02 00 0d 34 5f 31 5f 31 35 32 33  |entid...4_1_1523|
+000080: 39 32 37 38 34 00 00 09                          |92784...        |
+[20] RTMP_INVOKE ['onStatus', 0.0, None, {'code': 'NetStream.Play.UnpublishNotify', 'description': 'unpublished...', 'clientid': '4_1_152392784', 'level': 'status'}]
+header@00001a18: init=54 streamid=20 hdr=('\x00\x00\x00', 36628); 	143/143 bytes [RTMP_INVOKE]
+<RTMPMessage st=20 type=RTMP_INVOKE[14] peer=01000000 time=0 len=143>
+000000: 02 00 08 6f 6e 53 74 61 74 75 73 00 00 00 00 00  |...onStatus.....|
+000010: 00 00 00 00 05 03 00 05 6c 65 76 65 6c 02 00 06  |........level...|
+000020: 73 74 61 74 75 73 00 04 63 6f 64 65 02 00 13 4e  |status..code...N|
+000030: 65 74 53 74 72 65 61 6d 2e 50 6c 61 79 2e 53 74  |etStream.Play.St|
+000040: 6f 70 00 0b 64 65 73 63 72 69 70 74 69 6f 6e 02  |op..description.|
+000050: 00 07 73 74 6f 70 2e 2e 2e 00 07 64 65 74 61 69  |..stop.....detai|
+000060: 6c 73 02 00 02 74 30 00 08 63 6c 69 65 6e 74 69  |ls...t0..clienti|
+000070: 64 02 00 0d 34 5f 31 5f 31 35 32 33 39 32 37 38  |d...4_1_15239278|
+000080: 34 00 06 72 65 61 73 6f 6e 02 00 00 00 00 09     |4..reason...... |
+[20] RTMP_INVOKE ['onStatus', 0.0, None, {'code': 'NetStream.Play.Stop', 'description': 'stop...', 'level': 'status', 'clientid': '4_1_152392784', 'reason': '', 'details': 't0'}]
+header@00001aaf: init=02 streamid=2 hdr=('\x00\x00\x00', 1540, 0); 	6/6 bytes [RTMP_PING]
+<RTMPMessage st=2 type=RTMP_PING[04] peer=00000000 time=0 len=6>
+000000: 00 01 00 00 00 01                                |......          |

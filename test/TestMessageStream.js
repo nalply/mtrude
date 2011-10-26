@@ -7,7 +7,7 @@ var ChunkStream = mtrude.rtmp.ChunkStream;
 var MessageStream = mtrude.rtmp.MessageStream;
 var AMF = mtrude.rtmp.AMF;
 
-var asSocket = require('./fixtures/asSocket');
+var mockSocket = require('./fixtures/Tools').mockSocket;
 
 
 module.exports = {
@@ -15,9 +15,7 @@ module.exports = {
     var end = false;
     var messageIndex = 0;
 
-    var outgoing = 'test/out-' + new Date().getTime().toString(36);
-    var ms = new MessageStream(new ChunkStream(
-      asSocket('test/incoming', outgoing)));
+    var ms = new MessageStream(new ChunkStream(mockSocket('incoming1')));
     ms.on('error', function(err) {
       assert(false, 'error emitted: ' + err);
     });

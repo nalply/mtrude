@@ -1,0 +1,22 @@
+header@00000c01: init=03 streamid=3 hdr=('\x00\x00\x00', 60180, 0); 	235/128 bytes [RTMP_INVOKE]
+header@00000c8d: init=c3 streamid=3 hdr=None; 	107/107 bytes [RTMP_INVOKE]
+<RTMPMessage st=3 type=RTMP_INVOKE[14] peer=00000000 time=0 len=235>
+000000: 02 00 07 63 6f 6e 6e 65 63 74 00 3f f0 00 00 00  |...connect.?....|
+000010: 00 00 00 03 00 03 61 70 70 02 00 06 74 69 6b 61  |......app...tika|
+000020: 74 6f 00 08 66 6c 61 73 68 56 65 72 02 00 0e 4d  |to..flashVer...M|
+000030: 41 43 20 31 30 2c 32 2c 31 35 39 2c 31 00 06 73  |AC 10,2,159,1..s|
+000040: 77 66 55 72 6c 06 00 05 74 63 55 72 6c 02 00 12  |wfUrl...tcUrl...|
+000050: 72 74 6d 70 3a 2f 2f 6d 75 73 65 2f 74 69 6b 61  |rtmp://muse/tika|
+000060: 74 6f 00 04 66 70 61 64 01 00 00 0c 63 61 70 61  |to..fpad....capa|
+000070: 62 69 6c 69 74 69 65 73 00 40 6d e0 00 00 00 00  |bilities.@m.....|
+000080: 00 00 0b 61 75 64 69 6f 43 6f 64 65 63 73 00 40  |...audioCodecs.@|
+000090: a8 ee 00 00 00 00 00 00 0b 76 69 64 65 6f 43 6f  |.........videoCo|
+0000a0: 64 65 63 73 00 40 6f 80 00 00 00 00 00 00 0d 76  |decs.@o........v|
+0000b0: 69 64 65 6f 46 75 6e 63 74 69 6f 6e 00 3f f0 00  |ideoFunction.?..|
+0000c0: 00 00 00 00 00 00 07 70 61 67 65 55 72 6c 06 00  |.......pageUrl..|
+0000d0: 0e 6f 62 6a 65 63 74 45 6e 63 6f 64 69 6e 67 00  |.objectEncoding.|
+0000e0: 40 08 00 00 00 00 00 00 00 00 09                 |@..........     |
+[03] RTMP_INVOKE ['connect', 1.0, {'videoCodecs': 252.0, 'audioCodecs': 3191.0, 'flashVer': 'MAC 10,2,159,1', 'app': 'tikato', 'swfUrl': AMF_UNDEF, 'videoFunction': 1.0, 'capabilities': 239.0, 'pageUrl': AMF_UNDEF, 'fpad': False, 'tcUrl': 'rtmp://muse/tikato', 'objectEncoding': 3.0}]
+header@00000cf9: init=02 streamid=2 hdr=('\xca\x90\xea', 1029, 0); 	4/4 bytes [RTMP_SERVER]
+<RTMPMessage st=2 type=RTMP_SERVER[05] peer=00000000 time=13275370 len=4>
+000000: 00 26 25 a0                                      |.&%.            |
