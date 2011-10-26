@@ -1,17 +1,23 @@
 "use strict";
 
-var assert = require('assert');
 var fs = require('fs');
 var mtrude = require('mtrude');
 var ChunkStream = mtrude.rtmp.ChunkStream;
 var MessageStream = mtrude.rtmp.MessageStream;
 var AMF = mtrude.rtmp.AMF;
 
-var mockSocket = require('./fixtures/Tools').mockSocket;
+var mockSocket = require('./fixtures').mockSocket;
+
+function fix(assert) {
+  for (var key in assert) assert.ok[key] = assert[key];
+  return assert.ok;
+}
 
 
 module.exports = {
-  'test with incoming file': function(exit) {
+  'test with incoming file': function(exit, assert) {
+    assert = fix(assert);
+
     var end = false;
     var messageIndex = 0;
 
@@ -48,3 +54,4 @@ module.exports = {
     });
   },
 }
+
