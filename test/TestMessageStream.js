@@ -11,7 +11,7 @@ var mockSocket = require('./fixtures/Tools').mockSocket;
 
 
 module.exports = {
-  'test with incoming file': function() {
+  'test with incoming file': function(exit) {
     var end = false;
     var messageIndex = 0;
 
@@ -43,8 +43,7 @@ module.exports = {
       assert.equal(messageIndex, 1, messageIndex + ' == 1');
       end = true;
     });
-    process.on('exit', function() { // todo is never emitted
-      console.log('process.onExit');
+    exit(function() {
       assert(end, 'end has not been emitted');
     });
   },

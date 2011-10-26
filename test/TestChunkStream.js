@@ -9,7 +9,7 @@ var mockSocket = require('./fixtures/Tools').mockSocket;
 
 
 module.exports = {
-  'test with incoming file': function() {
+  'test with incoming file': function(exit) {
     var handshake = false;
     var end = false;
     var length = 0;
@@ -36,7 +36,7 @@ module.exports = {
       assert.equal(chunkIndex, 3, chunkIndex + ' == 3');
       end = true;
     });
-    process.on('exit', function() {
+    exit(function() {
       assert(handshake, 'handshake has not been emitted');
       assert(end, 'end has not been emitted');
     });
