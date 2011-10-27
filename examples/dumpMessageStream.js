@@ -26,7 +26,13 @@ function main() {
   }
 
   console.log('Dump format:\n'
-    + 'MESSAGE: ....\n');
+    + 'MSG  : %s %s %s %s %s:%s %s\n'
+    + 'PING : %s (%s) %s %s%s%s:%s\n',
+    'data-1st -8-bytes'.blue, 'asci i-8c'.yellow,
+    'tstamp'.blue, 'ti'.green, 'msg-id'.blue, 'chs-id'.blue, 'msglen'.magenta,
+    'ty'.green, 'PING-TYPE'.green, 'id'.blue, 'ms'.grey, '                  ',
+    'msg-id'.blue, 'chs-id'.blue
+    );
 
   if (argv.debug) MessageStream.DBG = true;
 
@@ -80,13 +86,30 @@ function dumpMessageStream(messageStream) {
       hex6(message.csid).blue, hex6(message.msid).blue,
       message.data.length.toString().magenta);
   });
-  messageStream.on('ping', function(ping) {
-    var id = ping.id == null ? '-' : ping.id;
-    var timestamp = ping.timestamp == null ? ping.buflen : ping.timestamp;
-    console.log('PING : %s (%s) %s %s',
-      hex2(ping.type).green, rtmp.pingNames[ping.type].green,
-      id.toString().blue, (timestamp || '-').toString().blue);
+  messageStream.on('control', function(control) {
+    console.log('CNTRL: %s %s %s %s %s:%s %s',
+      dump8(control.data).blue, ascii8(control.data),
+      hex6(control.timestamp).blue, hex2(control.typeid).green,
+      hex6(control.csid).blue, hex6(control.msid).blue,
+      control.data.length.toString().magenta);
   });
+  messageStream.on('ping', function(ping) {
+    var id = (ping.id == null ? '-' : ping.id).toString();
+    var timestamp = ping.timestamp == null ? ping.buflen : ping.timestamp;
+    timestamp = (timestamp || '-').toString();
+    var pingName = rtmp.pingNames[ping.type];
+    console.log('PING : %s (%s) %s %s           %s%s:%s',
+      hex2(ping.type).green, pingName.green,
+      id.toString().blue, timestamp.grey,
+      times(' ', 20 - pingName.length - timestamp.length - id.length),
+      hex6(ping.csid).blue, hex6(ping.msid).blue);
+  });
+}
+
+function times(s, n) {
+  var result = '';
+  for (var i = 0; i < n; i++) result += s;
+  return result;
 }
 
 if (require.main === module) main();
