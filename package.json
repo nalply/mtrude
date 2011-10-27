@@ -10,5 +10,8 @@
   , "dependencies": {
     "colors": "0.5.1"
   }
+  , "devDependencies": {
+    "optimist": ">=0.2.8"
+  }
 }
 
