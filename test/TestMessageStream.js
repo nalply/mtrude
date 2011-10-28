@@ -33,7 +33,7 @@ module.exports = {
       assert.equal(message.data.length, [235][messageIndex]);
 
       if (messageIndex == 0) {
-        var invokeParameters = AMF.deserialize(message.data);
+        var invokeParameters = AMF.deserializeZ(message.data);
         assert.equal(invokeParameters.length, 3);
         assert.equal(invokeParameters[0], 'connect');
         assert.equal(invokeParameters[1], 1);
