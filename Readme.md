@@ -2,16 +2,16 @@
 
 The project is in an early stage. Already done:
 
-- Buffer Chain 80% (slicing over buffer boundaries not well tested)
-- RTMP Chunk Stream 90% (sending not well tested)
-- RTMP Message Stream 80% (sending not well tested)
-- AMF 60% (only deserializing; no XML, AMF0 long string, AMF3 object; no
+- 80% Buffer Chain (slicing over buffer boundaries not well tested)
+- 90% RTMP Chunk Stream (sending not well tested)
+- 80% RTMP Message Stream (sending not well tested)
+- 50% AMF (only deserializing; no AMF0 long string, AMF3 object; no
 references; no tests)
 
 Future todos:
 
 - Base application support for connect, play, publish, pause, seek, resume
-- Base application allback support or similar architecture
+- Application callback support or similar
 - SSL support
 
 Not planned:
@@ -19,7 +19,7 @@ Not planned:
 - Shared Objects
 - Flash RPC (RTMP typeid 15 or 18)
 - XML support
-- In general: just the minimum to for our use case (see below)
+- In general: Just the minimum to for our use case (see below)
 
 ## Use case
 
