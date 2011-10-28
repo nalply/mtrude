@@ -1,6 +1,25 @@
 # mtrude - extrude media with node.js
 
-The project is in an early stage.
+The project is in an early stage. Already done:
+
+- Buffer Chain 80% (slicing over buffer boundaries not well tested)
+- RTMP Chunk Stream 90% (sending not well tested)
+- RTMP Message Stream 80% (sending not well tested)
+- AMF 60% (only deserializing; no XML, AMF0 long string, AMF3 object; no
+references; no tests)
+
+Future todos:
+
+- Base application support for connect, play, publish, pause, seek, resume
+- Base application allback support or similar architecture
+- SSL support
+
+Not planned:
+
+- Shared Objects
+- Flash RPC (RTMP typeid 15 or 18)
+- XML support
+- In general: just the minimum to for our use case (see below)
 
 ## Use case
 
@@ -27,9 +46,9 @@ know which is better, I am trying out a shim).
 
 ### Network layers
 
-RTMP uses a Chunk Stream as a low-level TCP protocol and a Message Stream protocol 
-to multiplex messages onto a single ActionScript3 `NetConnection` instance. 
-mtrude's `ChunkStream` is a wrapper around a socket (or a bidirectional node.js 
+RTMP uses a Chunk Stream as a low-level TCP protocol and a Message Stream protocol
+to multiplex messages onto a single ActionScript3 `NetConnection` instance.
+mtrude's `ChunkStream` is a wrapper around a socket (or a bidirectional node.js
 stream like a two-way pipe) and emits events like 'handshake' and 'chunk'.
 mtrude's `MessageStream` agains wraps a `ChunkStream` and
 emits 'message' events. `MessageStream` can again be wrapped by an RTMP
