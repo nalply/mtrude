@@ -11,7 +11,7 @@ exports.mockSocket = function(name, assert) {
   var incoming = dir + name + '.raw';
   var outgoing = dir + 'out-' + new Date().getTime().toString(36) + '.raw';
   return asSocket(incoming, outgoing
-    , function() { console.log('mockSocket(): reading ' + incoming); }
+    , function() { /* console.log('mockSocket(): reading ' + incoming); */ }
     , function() { fs.unlink(outgoing); }
   );
 }

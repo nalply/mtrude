@@ -23,3 +23,9 @@ var ascii8 = exports.ascii8 = function(data) {
   return b(0) + b(1) + b(2) + b(3) + ' ' + b(4) + b(5) + b(6) + b(7);
 }
 
+var dontColor = exports.dontColor = function() {
+  var colors = 'cyan yellow blue grey white magenta red green'.split(' ');
+  for (var i in colors)
+  Object.defineProperty(String.prototype, colors[i],
+      { get: function() { return this } });
+}

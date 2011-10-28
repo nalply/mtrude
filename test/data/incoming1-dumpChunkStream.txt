@@ -1,0 +1,11 @@
+NOTE! ChunkStream is not complete without MessageStream and might get
+stuck because of missing coordination with peer. Dump format:
+CHUNK: data-1st -8-bytes asci i-8c tstamp ti msg-id:chs-id msglen:chklen,rest
+
+FILE : Reading test/data/incoming1.raw
+FILE : Writing out
+HANDS: Handshake completed successfully
+CHUNK: 02000763 6f6e6e65 [30m·[39m[30m·[39m[30m·[39mc onne 000000 14 000003:000000 235:128,107
+CHUNK: 00000b61 7564696f [30m·[39m[30m·[39m[30m·[39ma udio 000000 14 000003:000000 235:107,0
+CHUNK: 002625a0          [30m·[39m&%[30m·[39m ···· ca90ea 05 000002:000000 4:4,0
+END  : ChunkStream gracefully ended

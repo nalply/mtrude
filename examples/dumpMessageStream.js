@@ -7,16 +7,19 @@ var rtmp = mtrude.rtmp;
 var ChunkStream = rtmp.ChunkStream;
 var MessageStream = rtmp.MessageStream;
 var asSocket = mtrude.asSocket;
+var dumpTools = require('./dumpTools');
 
 function main() {
   var optimist = require('optimist')
-    .usage('Usage: $0 [--debug] [--chunks] [in [out]]')
+  .usage('Usage: $0 [--debug] [--chunks] [--nocolor] [in [out]]')
     .boolean('debug')
     .boolean('chunks')
+    .boolean('nocolor')
     .boolean('help')
     .alias('h', 'help')
     .describe('debug', 'Set MessageStream.DBG = true')
     .describe('chunks', 'Also dump chunks')
+    .describe('nocolor', 'Don\'t use colors')
   ;
   var argv = optimist.argv;
 
@@ -24,6 +27,8 @@ function main() {
     optimist.showHelp();
     return;
   }
+
+  if (argv.nocolor) dumpTools.dontColor();
 
   console.log('Dump format:\n'
     + 'MSG  : %s %s %s %s %s:%s %s\n'
@@ -61,11 +66,10 @@ function main() {
   dumpMessageStream(messageStream);
 }
 
-var DumpTools = require('./DumpTools');
-var dump8 = DumpTools.dump8;
-var hex2 = DumpTools.hex2;
-var hex6 = DumpTools.hex6;
-var ascii8 = DumpTools.ascii8;
+var dump8 = dumpTools.dump8;
+var hex2 = dumpTools.hex2;
+var hex6 = dumpTools.hex6;
+var ascii8 = dumpTools.ascii8;
 
 function dumpMessageStream(messageStream) {
   messageStream.on('error', function(errorMessage) {

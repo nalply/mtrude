@@ -1,52 +1,65 @@
 "use strict";
 
-var assert = require('assert');
 var fs = require('fs');
 var mtrude = require('mtrude');
 var ChunkStream = mtrude.rtmp.ChunkStream;
+var spawn = require('child_process').spawn;
 
 var mockSocket = require('./fixtures').mockSocket;
 
-function fix(assert) {
-  for (var key in assert) assert.ok[key] = assert[key];
-  return assert.ok;
-}
-
-function incoming(filename, chunkCount, exit) {
+function incoming(filename, chunkCount, exit, assert) {
   var handshake = false;
   var end = false;
   var length = 0;
   var chunkIndex = 0;
 
   var cs = new ChunkStream(mockSocket(filename));
-  cs.on('error', function(err) {
-    assert(false, filename + ': error emitted: ' + err);
+  cs.on('error', function(errorMessage) {
+    assert.ok(false, filename + ': error emitted: ' + errorMessage);
   });
-  cs.on('warn', function(message) { console.log('WARN', message); });
+  cs.on('warn', function(warnMessage) {
+    assert.ok(false, filename + ': warn emitted: ' + warnMessage);
+  });
   cs.on('handshake', function() { handshake = true; });
   cs.on('end', function(graceful) {
-    assert(graceful, filename + ': not a graceful end');
+    assert.ok(graceful, filename + ': not a graceful end');
     assert.equal(chunkIndex, chunkCount,
       filename + ': ' + chunkIndex + ' == ' + chunkCount);
     end = true;
   });
   cs.on('chunk', function(chunk) {
-    assert(handshake, filename +
+    assert.ok(handshake, filename +
       ': handshake must be emitted before any chunks');
     chunkIndex++;
   });
   exit(function() {
-    assert(handshake, filename + ': handshake has not been emitted');
-    assert(end, filename + ': end has not been emitted');
+    assert.ok(handshake, filename + ': handshake has not been emitted');
+    assert.ok(end, filename + ': end has not been emitted');
   });
   return cs;
 }
 
+function dumpChunkStream(filename, assert) {
+  var iFile = 'test/data/' + filename + '.raw';
+  var tFile = 'test/data/' + filename + '-dumpChunkStream.txt';
+  var js = 'examples/dumpChunkStream.js';
+  var child = spawn('node', [js, '--nocolor', iFile, '/dev/null']);
+  var text = '';
+
+  child.stdout.on('data', function(data) { text += data });
+  child.on('exit', function(code) {
+    assert.equal(code, 0);
+    fs.readFile(tFile, function(err, testData) {
+      assert.equal(err, null, err + '');
+      assert.equal(text, testData, js + ' ' + iFile);
+    });
+  });
+}
+
+
 module.exports = {
   'test incoming1': function(exit, assert) {
-    assert = fix(assert);
-
-    var cs = incoming('incoming1', 3, exit);
+    var cs = incoming('incoming1', 3, exit, assert);
     var chunkIndex = 0;
 
     cs.on('chunk', function(chunk) {
@@ -61,9 +74,7 @@ module.exports = {
   },
 
   'test incoming2': function(exit, assert) {
-    assert = fix(assert);
-
-    var cs = incoming('incoming2', 7, exit);
+    var cs = incoming('incoming2', 7, exit, assert);
     var chunkIndex = 0;
 
     cs.on('chunk', function(chunk) {
@@ -78,20 +89,38 @@ module.exports = {
   },
 
   'test incoming3': function(exit, assert) {
-    assert = fix(assert);
-    var cs = incoming('incoming3', 8, exit);
+    var cs = incoming('incoming3', 8, exit, assert);
   },
 
   'test outgoing2': function(exit, assert) {
-    assert = fix(assert);
-    var cs = incoming('outgoing2', 7, exit);
+    var cs = incoming('outgoing2', 7, exit, assert);
   },
 
-  // Implement ChunkStream.chunkType2
-  /*
   'test outgoing3': function(exit, assert) {
-    assert = fix(assert);
-    var cs = incoming('outgoing3', 7, exit);
+    var cs = incoming('outgoing3', 25, exit, assert);
+    var chunkIndex = 0;
+
+    cs.on('chunk', function(chunk) {
+      if (chunk.typeid == 1) cs.chunkSize = chunk.data.readUInt32LE(0);
+      assert.equal(chunk.csid, [2, 2, 2, 3, 3, 3, 3, 2, 2, 20, 20, 20, 20, 20,
+        20, 20, 2, 21, 21, 20, 20, 2, 20, 20, 2][chunkIndex]);
+      chunkIndex++;
+    });
   },
-  */
+
+  'dump incoming1': function(exit, assert) {
+    dumpChunkStream('outgoing3', assert);
+  },
+
+  'dump incoming2': function(exit, assert) {
+    dumpChunkStream('outgoing3', assert);
+  },
+
+  'dump outgoing2': function(exit, assert) {
+    dumpChunkStream('outgoing2', assert);
+  },
+
+  'dump outgoing3': function(exit, assert) {
+    dumpChunkStream('outgoing3', assert);
+  },
 }

@@ -5,16 +5,19 @@ var net = require('net');
 var mtrude = require('mtrude');
 var ChunkStream = mtrude.rtmp.ChunkStream;
 var asSocket = mtrude.asSocket;
+var dumpTools = require('./dumpTools');
 
 function main() {
   var optimist = require('optimist')
-    .usage('Usage: $0 [--debug] [--debugchain] [in [out]]')
+    .usage('Usage: $0 [--debug] [--debugchain] [--nocolor] [in [out]]')
     .boolean('debug')
     .boolean('debugchain')
+    .boolean('nocolor')
     .boolean('help')
     .alias('h', 'help')
     .describe('debug', 'Set ChunkStream.DBG = true')
     .describe('debugchain', 'Set BufferChain.DBG = true')
+    .describe('nocolor', 'Don\'t use colors')
   ;
   var argv = optimist.argv;
 
@@ -22,6 +25,8 @@ function main() {
     optimist.showHelp();
     return;
   }
+
+  if (argv.nocolor) dumpTools.dontColor();
 
   console.log(''
     + 'NOTE! ChunkStream is not complete without MessageStream and might get\n'
@@ -57,11 +62,10 @@ function main() {
 }
 
 
-var DumpTools = require('./DumpTools');
-var dump8 = DumpTools.dump8;
-var hex2 = DumpTools.hex2;
-var hex6 = DumpTools.hex6;
-var ascii8 = DumpTools.ascii8;
+var dump8 = dumpTools.dump8;
+var hex2 = dumpTools.hex2;
+var hex6 = dumpTools.hex6;
+var ascii8 = dumpTools.ascii8;
 
 var dumpChunkStream = function(chunkStream) {
   chunkStream.on('error', function(errorMessage) {
@@ -78,6 +82,9 @@ var dumpChunkStream = function(chunkStream) {
   chunkStream.on('warn', function(message) {
     console.log('WARN : %s', ('ChunkStream: ' + message).red);
   });
+  chunkStream.on('info', function(message) {
+    console.log('INFO : %s', ('ChunkStream: ' + message).magenta);
+  });
   chunkStream.on('chunk', function(chunk) {
     console.log(
       'CHUNK: %s %s %s %s %s:%s %s:%s,%s',
@@ -88,7 +95,7 @@ var dumpChunkStream = function(chunkStream) {
       chunk.rest.toString().blue);
     if (chunk.typeid == 1) {
       var chunkSize = chunk.data.readUInt32LE(0);
-      chunkStream.warn('Setting chunk size to ' + chunkSize);
+      chunkStream.info('Setting chunk size to ' + chunkSize);
       chunkStream.chunkSize = chunkSize;
     }
   });
