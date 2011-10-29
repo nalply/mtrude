@@ -11,6 +11,7 @@ references; no tests)
 Future todos:
 
 - Base application support for connect, play, publish, pause, seek, resume
+- flv or h.264 handling
 - Application callback support or similar
 - SSL support
 
@@ -81,7 +82,13 @@ Sometimes these implementations are only partial implementations. Caveat emptor.
 - [crtmpserver](http://rtmpd.com)
 - [librtmp](http://coderepos.org/share/browser/lang/c/librtmp/rtmp.c)
 - [node-amf, RTMP support incomplete](http://timwhitlock.info/blog/2010/08/07/node-amf-and-node-rtmp)
+- [AMF3 in AS3](http://cvlib.googlecode.com/svn-history/r3/trunk/as3/com/coursevector/amf/AMF3.as)
 - [ArcusNode, RTMFP](https://github.com/OpenRTMFP/ArcusNode)
+
+### Video handling
+
+- [Granddaddy ffmpeg](http://ffmpeg.org)
+- [node-fluent-ffmpeg](https://github.com/schaermu/node-fluent-ffmpeg)
 
 ### Reverse engineering tools
 
@@ -89,6 +96,10 @@ tcpflow together with rtmptool allow easy and thorough examinations of rtmp conn
 
 - [tcpflow](http://afflib.org/software/tcpflow)
 - [rtmptool](https://bitbucket.org/intgr/rtmptool)
+ 
+### Other stuff
+
+- [Discussion about rtmp server on nodejs](https://groups.google.com/forum/#!topic/nodejs/KUb_v4ZxWPE)
 
 ## MIT License
 
