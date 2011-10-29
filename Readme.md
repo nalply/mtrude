@@ -8,7 +8,7 @@ The project is in an early stage. Already done:
 - 50% AMF (only deserializing; no AMF0 long string, AMF3 object; no
 references; no tests)
 
-Future todos:
+Not yet begun:
 
 - Base application support for connect, play, publish, pause, seek, resume
 - flv or h.264 handling
@@ -24,12 +24,13 @@ Not planned:
 
 ## Use case
 
-A simple streaming: `NetConnection.play()` and webcam recording: `NetConnection.record()`
+A simple streaming `NetStream.play()` and webcam recording `NetStream.record()`
 server solution is needed for secure deferred sign language communication. Deferred means
 a sign language analogue to mail: one sends a sign language message and does not expect
 an immediate answer. This use case is a bit different from the majority of the available
-web video deployments: the focus is *secure* recording, while a product like YouTube does
-not need to worry about the privacy of the submitted or recorded videos.
+web video deployments: the focus is **secure** recording and playback. A product like
+YouTube does not need to worry about the privacy of the submitted or recorded videos,
+for example.
 
 And that's why a lot of the available software have a hidden limitation or other. It's
 difficult to find something which conforms to all the requirements of that use case and
