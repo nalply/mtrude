@@ -8,9 +8,10 @@ The project is in an early stage. Already done:
 - 50% AMF (only deserializing; no AMF0 long string, AMF3 object; no
 references; no tests)
 
-Future todos:
+Not yet begun:
 
 - Base application support for connect, play, publish, pause, seek, resume
+- flv or h.264 handling
 - Application callback support or similar
 - SSL support
 
@@ -23,12 +24,13 @@ Not planned:
 
 ## Use case
 
-A simple streaming: `NetConnection.play()` and webcam recording: `NetConnection.record()`
+A simple streaming `NetStream.play()` and webcam recording `NetStream.record()`
 server solution is needed for secure deferred sign language communication. Deferred means
 a sign language analogue to mail: one sends a sign language message and does not expect
 an immediate answer. This use case is a bit different from the majority of the available
-web video deployments: the focus is *secure* recording, while a product like YouTube does
-not need to worry about the privacy of the submitted or recorded videos.
+web video deployments: the focus is **secure** recording and playback. A product like
+YouTube does not need to worry about the privacy of the submitted or recorded videos,
+for example.
 
 And that's why a lot of the available software have a hidden limitation or other. It's
 difficult to find something which conforms to all the requirements of that use case and
@@ -81,7 +83,13 @@ Sometimes these implementations are only partial implementations. Caveat emptor.
 - [crtmpserver](http://rtmpd.com)
 - [librtmp](http://coderepos.org/share/browser/lang/c/librtmp/rtmp.c)
 - [node-amf, RTMP support incomplete](http://timwhitlock.info/blog/2010/08/07/node-amf-and-node-rtmp)
+- [AMF3 in AS3](http://cvlib.googlecode.com/svn-history/r3/trunk/as3/com/coursevector/amf/AMF3.as)
 - [ArcusNode, RTMFP](https://github.com/OpenRTMFP/ArcusNode)
+
+### Video handling
+
+- [Granddaddy ffmpeg](http://ffmpeg.org)
+- [node-fluent-ffmpeg](https://github.com/schaermu/node-fluent-ffmpeg)
 
 ### Reverse engineering tools
 
@@ -89,6 +97,10 @@ tcpflow together with rtmptool allow easy and thorough examinations of rtmp conn
 
 - [tcpflow](http://afflib.org/software/tcpflow)
 - [rtmptool](https://bitbucket.org/intgr/rtmptool)
+ 
+### Other stuff
+
+- [Discussion about rtmp server on nodejs](https://groups.google.com/forum/#!topic/nodejs/KUb_v4ZxWPE)
 
 ## MIT License
 
