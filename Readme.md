@@ -6,11 +6,11 @@ The project is in an early stage. Already done:
 - 90% RTMP Chunk Stream (sending not well tested)
 - 80% RTMP Message Stream (sending not well tested)
 - 50% AMF (only deserializing; no AMF0 long string, AMF3 object; no
+- 10% Base application support for connect, play, publish, pause, send, resume
 references; no tests)
 
 Not yet begun:
 
-- Base application support for connect, play, publish, pause, seek, resume
 - flv or h.264 handling
 - Application callback support or similar
 - SSL support
@@ -68,11 +68,13 @@ Have a look in the `examples` subdirectory.
 
 ## Sources and tools
 
-### Specifications
+### Specifications and explanations
 
 - [Adobe rtmp spec](http://wwwimages.adobe.com/www.adobe.com/content/dam/Adobe/en/devnet/rtmp/pdf/rtmp_specification_1.0.pdf)
 - [Adobe amf0 spec](http://opensource.adobe.com/wiki/download/attachments/1114283/amf0_spec_121207.pdf)
 - [Adobe amf3 spec](http://opensource.adobe.com/wiki/download/attachments/1114283/amf3_spec_05_05_08.pdf)
+- [Adobe flv spec](http://download.macromedia.com/f4v/video_file_format_spec_v10_1.pdf)
+- [Thompson's blog](http://thompsonng.blogspot.com/2010/10/rtmp-part-1.html)
 
 ### Other implementations of RTMP and AMF
 
