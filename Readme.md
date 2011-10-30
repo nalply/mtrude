@@ -74,7 +74,7 @@ Have a look in the `examples` subdirectory.
 - [Adobe amf0 spec](http://opensource.adobe.com/wiki/download/attachments/1114283/amf0_spec_121207.pdf)
 - [Adobe amf3 spec](http://opensource.adobe.com/wiki/download/attachments/1114283/amf3_spec_05_05_08.pdf)
 - [Adobe flv spec](http://download.macromedia.com/f4v/video_file_format_spec_v10_1.pdf)
-- [Thompson's blog](http://thompsonng.blogspot.com/2010/10/rtmp-part-1.html)
+- [Thompson's blog about RTMP](http://thompsonng.blogspot.com/search/label/RTMP)
 
 ### Other implementations of RTMP and AMF
 
