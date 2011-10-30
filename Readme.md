@@ -6,8 +6,8 @@ The project is in an early stage. Already done:
 - 90% RTMP Chunk Stream (sending not well tested)
 - 80% RTMP Message Stream (sending not well tested)
 - 50% AMF (only deserializing; no AMF0 long string, AMF3 object; no
+  references; no tests)
 - 10% Base application support for connect, play, publish, pause, send, resume
-references; no tests)
 
 Not yet begun:
 
