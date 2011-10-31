@@ -35,7 +35,7 @@ function main() {
     return;
   }
 
-  if (argv.nocolor) dumpTools.dontColor();
+  if (argv.nocolor) utils.dontColor();
 
   if (argv.debug) MessageStream.DBG = true;
 

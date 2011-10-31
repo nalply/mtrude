@@ -28,7 +28,10 @@ function main() {
     return;
   }
 
-  if (argv.nocolor) dumpTools.dontColor();
+  if (argv.nocolor) utils.dontColor();
+
+  // todo PING shoulg also dump ti (it's always the same but it is nice to show
+  // that).
 
   console.log('Dump format:\n'
     + 'MSG  : %s %s %s %s %s:%s %s\n'
@@ -66,10 +69,10 @@ function main() {
   dumpMessageStream(messageStream);
 }
 
-var dump8 = dumpTools.dump8;
-var hex2 = dumpTools.hex2;
-var hex6 = dumpTools.hex6;
-var ascii8 = dumpTools.ascii8;
+var dump8 = utils.dump8;
+var hex2 = utils.hex2;
+var hex6 = utils.hex6;
+var ascii8 = utils.ascii8;
 
 function dumpMessageStream(messageStream) {
   messageStream.on('error', function(errorMessage) {

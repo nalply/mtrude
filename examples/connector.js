@@ -3,6 +3,7 @@
 var net = require('net');
 var mtrude = require('mtrude');
 var rtmp = mtrude.rtmp;
+var AMF = rtmp.AMF;
 var ChunkStream = rtmp.ChunkStream;
 var MessageStream = rtmp.MessageStream;
 var Application = rtmp.Application;
@@ -21,11 +22,13 @@ function workWithChunkStream(chunkStream) {
 
 function main() {
   var optimist = require('optimist')
-  .usage('Usage: $0 [--debug] [in [out]]')
-    .boolean('debug')
+  .usage('Usage: $0 [--debugamf] [--debugmessage] [in [out]]')
+    .boolean('debugamf')
+    .boolean('debugmessage')
     .boolean('help')
     .alias('h', 'help')
-    .describe('debug', 'Set MessageStream.DBG = true')
+    .describe('debugamf', 'Set AMF.DBG = true')
+    .describe('debugmessage', 'Set MessageStream.DBG = true')
     .describe('nocolor', 'Don\'t use colors')
   ;
   var argv = optimist.argv;
@@ -35,7 +38,8 @@ function main() {
     return;
   }
 
-  if (argv.debug) MessageStream.DBG = true;
+  MessageStream.DBG = !!argv.debugmessage;
+  AMF.DBG = !!argv.debugamf;
 
   if (argv._.length == 0) {
     var server = net.createServer();
