@@ -6,8 +6,8 @@ var mtrude = require('mtrude');
 var rtmp = mtrude.rtmp;
 var ChunkStream = rtmp.ChunkStream;
 var MessageStream = rtmp.MessageStream;
-var asSocket = mtrude.asSocket;
-var dumpTools = require('./dumpTools');
+var utils = mtrude.utils;
+var asSocket = utils.asSocket;
 
 function main() {
   var optimist = require('optimist')

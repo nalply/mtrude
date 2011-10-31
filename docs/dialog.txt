@@ -1,0 +1,13 @@
+Handshake fertig.
+Client: INVOKE [ 'connect',  1, {
+  app: 'flvplayback', flashVer: 'MAC 10,2,159,1', swfUrl: undefined,
+  tcUrl: 'rtmp://muse/flvplayback', fpad: false, capabilities: 239,
+  audioCodecs: 3191, videoCodecs: 252, videoFunction: 1,
+  pageUrl: undefined, objectEncoding: 3 } ]
+Client: SERVER (windowSize = 0x2625a0)
+Server: SERVER (windowSize = idem)
+Server: BANDWIDTH (windowSize = idem, limit = 2)
+Server: INVOKE [ '_result', 1, { fmsVer: 'FMS/3,0,1,123', capabilities: 31 },
+  { level: 'status', code: 'NetConnection.Connect.Success',
+    description: 'Connection succeeded', objectEncoding: 3 } ]
+

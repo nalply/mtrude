@@ -1,4 +1,4 @@
-var asSocket = require('mtrude').asSocket;
+var asSocket = require('mtrude').utils.asSocket;
 var fs = require('fs');
 
 exports.mockSocket = function(name, assert) {

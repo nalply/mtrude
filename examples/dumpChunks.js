@@ -5,17 +5,17 @@ var net = require('net');
 var mtrude = require('mtrude');
 var ChunkStream = mtrude.rtmp.ChunkStream;
 var asSocket = mtrude.asSocket;
-var dumpTools = require('./dumpTools');
+var utils = mtrude.utils;
 
 function main() {
   var optimist = require('optimist')
-    .usage('Usage: $0 [--debug] [--debugchain] [--nocolor] [in [out]]')
-    .boolean('debug')
+    .usage('Usage: $0 [--debugchunk] [--debugchain] [--nocolor] [in [out]]')
+    .boolean('debugchunk')
     .boolean('debugchain')
     .boolean('nocolor')
     .boolean('help')
     .alias('h', 'help')
-    .describe('debug', 'Set ChunkStream.DBG = true')
+    .describe('debugchunk', 'Set ChunkStream.DBG = true')
     .describe('debugchain', 'Set BufferChain.DBG = true')
     .describe('nocolor', 'Don\'t use colors')
   ;
@@ -26,7 +26,7 @@ function main() {
     return;
   }
 
-  if (argv.nocolor) dumpTools.dontColor();
+  if (argv.nocolor) utils.dontColor();
 
   console.log(''
     + 'NOTE! ChunkStream is not complete without MessageStream and might get\n'
@@ -37,9 +37,9 @@ function main() {
     'msglen'.magenta, 'chklen'.blue, 'rest'.blue
   );
 
-  if (argv.debug) ChunkStream.DBG = true;
+  ChunkStream.DBG = !!argv.debugchunk;
 
-  if (argv.chain) mtrude.BufferChain.DBG = true;
+  mtrude.BufferChain.DBG = !!argv.debugchain;
 
   if (argv._.length == 0) {
     var server = net.createServer();
@@ -54,7 +54,7 @@ function main() {
     var iFile = argv._[0];
     var time36 = new Date().getTime().toString(36)
     var oFile = argv._[1] || 'out-' + time36 + '.raw';
-    dumpChunkStream(new ChunkStream(asSocket(iFile, oFile
+    dumpChunkStream(new ChunkStream(utils.asSocket(iFile, oFile
       , function() { console.log('FILE : ' + 'Reading %s'.cyan, iFile); }
       , function() { console.log('FILE : ' + 'Writing %s'.cyan, oFile); }
     )));
@@ -62,10 +62,10 @@ function main() {
 }
 
 
-var dump8 = dumpTools.dump8;
-var hex2 = dumpTools.hex2;
-var hex6 = dumpTools.hex6;
-var ascii8 = dumpTools.ascii8;
+var dump8 = utils.dump8;
+var hex2 = utils.hex2;
+var hex6 = utils.hex6;
+var ascii8 = utils.ascii8;
 
 var dumpChunkStream = function(chunkStream) {
   chunkStream.on('error', function(errorMessage) {

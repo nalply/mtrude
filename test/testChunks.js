@@ -41,17 +41,19 @@ function incoming(filename, chunkCount, exit, assert) {
 
 function dumpChunkStream(filename, assert) {
   var iFile = 'test/data/' + filename + '.raw';
-  var tFile = 'test/data/' + filename + '-dumpChunkStream.txt';
-  var js = 'examples/dumpChunkStream.js';
-  var child = spawn('node', [js, '--nocolor', iFile, '/dev/null']);
+  var tFile = 'test/data/' + filename + '-chunks.txt';
+  var js = 'examples/dumpChunks.js';
+  var args = [js, '--nocolor', iFile, '/dev/null'];
+  var child = spawn('node', args);
+  var commandText = '\n      command: node ' + args.join(' ');
   var text = '';
 
   child.stdout.on('data', function(data) { text += data });
   child.on('exit', function(code) {
-    assert.equal(code, 0);
+    assert.equal(code, 0, 'child had nonzero exit code: ' + code + commandText);
     fs.readFile(tFile, function(err, testData) {
-      assert.equal(err, null, err + '');
-      assert.equal(text, testData, js + ' ' + iFile);
+      assert.equal(err, null, err + ': ' + commandText);
+      assert.equal(text, testData, js + ' <> ' + iFile + ': ' + commandText);
     });
   });
 }

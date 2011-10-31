@@ -8,8 +8,8 @@ var rtmp = mtrude.rtmp;
 var ChunkStream = rtmp.ChunkStream;
 var MessageStream = rtmp.MessageStream;
 var AMF = rtmp.AMF;
-var asSocket = mtrude.asSocket;
-var dumpTools = require('./dumpTools');
+var utils = mtrude.utils;
+var asSocket = utils.asSocket;
 
 function main() {
   var optimist = require('optimist')
@@ -89,16 +89,20 @@ function dumpAmf(messageStream, ignoreErrors) {
   messageStream.on('message', function(message) {
     switch (message.typeid) {
       case rtmp.types.INVOKE:
-        console.log('INVOK: %s', dumpZ(message.data, messageStream).magenta);
+        console.log('INVOK: %s:%s %s', message.msid, message.csid,
+          dumpZ(message.data, messageStream).magenta);
         break;
       case rtmp.types.SO:
-        console.log('SHOBJ: %s', dumpZ(message.data, messageStream).blue);
+        console.log('SHOBJ: %s:%s %s', message.msid, message.csid,
+          dumpZ(message.data, messageStream).yellow);
         break;
       case rtmp.types.NOTIFY:
-        console.log('NOTIF: %s', dumpZ(message.data, messageStream).blue);
+        console.log('NOTIF: %s:%s %s', message.msid, message.csid,
+          dumpZ(message.data, messageStream).blue);
         break;
       case rtmp.types.FLEX:
-        console.log('FLEX : %s', dump3(message.data, messageStream).cyan);
+        console.log('FLEX : %s:%s %s', message.msid, message.csid,
+          dump3(message.data, messageStream).cyan);
         break;
     }
   });
